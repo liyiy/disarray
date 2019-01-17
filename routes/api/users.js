@@ -5,6 +5,8 @@ const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
 const keys = require("../../config/keys");
 const passport = require('passport');
+const validateRegisterInput = require('../../validation/register')
+const validateLoginInput = require("../../validation/login");
 
 // This is the test route
 router.get('/test', (req, res) => res.json({ msg: "this is the users route" }));
@@ -21,7 +23,8 @@ router.post('/register', (req, res) => {
     .then(user => {
       if (user) {
         // Throw an error if user already exists
-        return res.status(400).json({ email: "A user has already registered with this address"})
+        errors.email = 'Email already exists';
+        return res.status(400).json(errors)
       } else {
         // Otherwise create a new user
         const newUser = new User({
@@ -67,7 +70,8 @@ router.post('/login', (req, res) => {
   User.findOne({email})
     .then(user => {
       if (!user) {
-        return res.status(404).json({ email: 'This user does not exist' })
+        errors.email = 'User not found';
+        return res.status(404).json(errors);
       }
       
       bcrypt.compare(password, user.password)
