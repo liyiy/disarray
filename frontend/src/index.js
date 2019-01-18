@@ -1,12 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import jwt_decode from 'jwt-decode';
+import * as APIUtil from './util/session_api_util';
+import configureStore from './store/store';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+document.addEventListener('DOMContentLoaded', () => {
+  let store = configureStore();
+  if (localStorage.jwtToken) {
+    APIUtil.setAuthToken(localStorage.jwtToken);
+    const decoded = jwt_decode(localStorage.jwtToken);
+    store.dispatch(APIUtil.setCurrentUser(decoded));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+    const currentTime = Date.now() / 1000;
+    if (decoded.exp < currentTime) {
+      store.dispatch(APIUtil.logoutUser());
+      window.location.href = '/login';
+    }
+  }
+  const root = document.getElementById('root');
+  ReactDOM.render(<App store={store} />, root);
+  serviceWorker.unregister();
+});
+
