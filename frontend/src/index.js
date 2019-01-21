@@ -4,7 +4,7 @@ import './index.css';
 import jwt_decode from 'jwt-decode';
 import * as APIUtil from './util/session_api_util';
 import configureStore from './store/store';
-import App from './App';
+import Root from './root'
 import * as serviceWorker from './serviceWorker';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   const root = document.getElementById('root');
-  ReactDOM.render(<App store={store} />, root);
+  ReactDOM.render(<Root store={store} />, root);
   serviceWorker.unregister();
 });
 
