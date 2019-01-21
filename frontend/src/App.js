@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import { AuthRoute, ProtectedRoute } from './util/route_util.js';
 import LogInFormContainer from './components/session/login_form_container';
 import SignUpFormContainer from './components/session/signup_form_container';
 import HomePage from './components/home/home_page';
@@ -14,9 +15,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route exact path='/' component={HomePage}/>
-        <Route exact path='/login' component={LogInFormContainer}/>
-        <Route exact path='/signup' component={SignUpFormContainer}/>
+        <AuthRoute exact path='/login' component={LogInFormContainer}/>
+        <AuthRoute exact path='/signup' component={SignUpFormContainer}/>
+        <ProtectedRoute exact path='/' component={HomePage}/>
         <header className="App-header">
           <p>
             WELCOME TO DISCORD
