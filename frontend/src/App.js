@@ -19,9 +19,7 @@ class App extends Component {
         <AuthRoute exact path='/signup' component={SignUpFormContainer}/>
         <ProtectedRoute exact path='/' component={HomePage}/>
         <header className="App-header">
-          <p>
-            WELCOME TO DISCORD
-          </p>
+          
         </header>
       </div>
     );

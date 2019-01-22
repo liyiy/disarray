@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import jwt_decode from 'jwt-decode';
 import * as APIUtil from './util/session_api_util';
 import configureStore from './store/store';
-import Root from './root'
+import Root from './root';
 import * as serviceWorker from './serviceWorker';
 
 document.addEventListener('DOMContentLoaded', () => {

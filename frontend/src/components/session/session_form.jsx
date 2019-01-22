@@ -44,21 +44,13 @@ class SessionForm extends React.Component {
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          Welcome to Discord!
           <br/>
-          Please {this.props.formType} or {this.props.navLink}
           {this.renderErrors()}
           <div className="login-form">
-            <br/>
-            <label>Username:
-              <input type="text"
-                value={this.state.username}
-                onChange={this.update('username')}
-                className="login-input"
-              />
-            </label>
+            <h1>{this.props.message}</h1>
             <br />
-            <label>Email:
+            <label>EMAIL
+              <br/>
               <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
@@ -66,7 +58,20 @@ class SessionForm extends React.Component {
               />
             </label>
             <br />
-            <label>Password:
+            {this.props.formType === 'Register' ?
+            <>
+            <label>USERNAME 
+              <br/>
+              <input type="text"
+                value={this.state.username}
+                onChange={this.update('username')}
+                className="login-input"
+              />
+            </label>
+            <br/> 
+            </> : null }
+            <label>PASSWORD
+              <br/>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
@@ -74,9 +79,10 @@ class SessionForm extends React.Component {
               />
             </label>
             <br />
-            {this.props.formType === 'signup' ? 
+            {this.props.formType === 'Register' ? 
             <>
-              <label>Type In Password Again:
+              <label>PASSWORD AGAIN
+                <br/>
                 <input type="password"
                   value={this.state.password2}
                   onChange={this.update('password2')}
@@ -86,8 +92,11 @@ class SessionForm extends React.Component {
               <br/> 
             </> : null }
             <input className="session-submit" type="submit" value={this.props.formType} />
+            <br />
+            {this.props.navLink}
           </div>
         </form>
+
       </div>
     );
   }
