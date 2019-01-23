@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../util/session_api_util';
+import ServerList from './server_list';
 
 const msp = (state, ownProps) => {
   return {
@@ -28,6 +29,7 @@ class Home extends React.Component {
   render() {
     return (
       <>
+        <ServerList />
         <button onClick={this.logout}>Logout</button>
         <h1>Hi this is the home page</h1>
       </>

@@ -57,6 +57,7 @@ html, body {
   border-style: solid;
   border-width: 1px;
   font-size: 20px;
+  padding: .5em;
 }
 
 .login-input:focus {
