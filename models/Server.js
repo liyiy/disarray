@@ -1,22 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
-  username: {
-    type: String, 
-    required: true
-  },
-  email: {
+const ServerSchema = new Schema({
+  name: {
     type: String,
     required: true
   },
-  password: {
-    type: String,
-    required: true
-  },
-  servers: {
+  owner: {
     type: Schema.Types.ObjectId,
-    ref: 'Server'
+    ref: 'User',
+    required: true
+  },
+  channels: {
+    type: Schema.Types.ObjectId,
+    ref: 'Channel'
   },
   date: {
     type: Date,
@@ -24,4 +21,4 @@ const UserSchema = new Schema({
   }
 });
 
-module.exports = User = mongoose.model('users', UserSchema);
+module.exports = Server = mongoose.model('servers', ServerSchema);
