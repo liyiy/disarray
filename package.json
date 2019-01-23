@@ -2,10 +2,10 @@
   "name": "discord-mern",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "discord.js",
   "scripts": {
-    "start": "node app.js",
-    "server": "nodemon app.js",
+    "start": "node discord.js",
+    "server": "nodemon discord.js",
     "frontend-install": "npm install --prefix frontend",
     "frontend": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run frontend\""

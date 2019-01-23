@@ -12,6 +12,10 @@ class SessionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
+
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
@@ -44,10 +48,9 @@ class SessionForm extends React.Component {
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          <br/>
-          {this.renderErrors()}
           <div className="login-form">
             <h1>{this.props.message}</h1>
+            {this.renderErrors()}
             <br />
             <label>EMAIL
               <br/>
@@ -55,6 +58,7 @@ class SessionForm extends React.Component {
                 value={this.state.email}
                 onChange={this.update('email')}
                 className="login-input"
+                required
               />
             </label>
             <br />
@@ -66,6 +70,7 @@ class SessionForm extends React.Component {
                 value={this.state.username}
                 onChange={this.update('username')}
                 className="login-input"
+                required
               />
             </label>
             <br/> 

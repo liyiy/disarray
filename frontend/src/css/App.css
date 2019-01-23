@@ -1,4 +1,23 @@
 
+html, body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.login-form-container {
+  background-image: url("../discordbg.jpg");
+  background-size: cover;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
 .login-form {
   border-radius: 5px;
   box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
@@ -8,28 +27,23 @@
   padding: 40px;
   width: 480px;
   background-color: #36393d;
-  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .login-form h1 {
   color: #ffffff;
-  font-size: 25px;
+  font-size: 25px;    
+  margin: 0;
+  font-weight: 300;
 }
 
 .login-form label {
   color: #b9bbbe;
   font-size: 11px;
   font-weight: 700;
-}
-
-.login-form-container {
-  background-color: black;
-  border: 2px solid red;
-  display: flex;
-  height: 100%;
-  width: 100%;
-  justify-content: center;
-  font-family: 'Open Sans', sans-serif;
+  margin: 0;
 }
 
 .login-input {
@@ -42,7 +56,14 @@
   border-radius: 3px;
   border-style: solid;
   border-width: 1px;
+  font-size: 20px;
 }
+
+.login-input:focus {
+  border-color: #7289da;
+  outline: none;
+}
+
 
 .session-submit {
   width: 350px;
