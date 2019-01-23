@@ -11,6 +11,10 @@ const ServerSchema = new Schema({
     ref: 'User',
     required: true
   },
+  users: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
   channels: {
     type: Schema.Types.ObjectId,
     ref: 'Channel'

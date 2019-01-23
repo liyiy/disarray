@@ -6,6 +6,20 @@ export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 
+// actions
+
+export const setCurrentUser = decoded => {
+  return {
+    type: RECEIVE_CURRENT_USER,
+    payload: decoded
+  };
+};
+
+export const removeErrors = () => {
+  return {
+    type: CLEAR_ERRORS
+  };
+};
 
 export const setAuthToken = token => {
   if (token) {
@@ -51,23 +65,11 @@ export const loginUser = userData => dispatch => {
     );
 };
 
-export const setCurrentUser = decoded => {
-  return {
-    type: RECEIVE_CURRENT_USER,
-    payload: decoded
-  };
-};
 
 export const logoutUser = () => dispatch => {
   localStorage.removeItem('jwtToken');
   setAuthToken(false);
   dispatch(setCurrentUser({}));
-};
-
-export const removeErrors = () => {
-  return {
-    type: CLEAR_ERRORS
-  };
 };
 
 export const clearErrors = () => dispatch => {  

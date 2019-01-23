@@ -4,41 +4,15 @@ const isEmpty = require("./is-empty");
 module.exports = function validateServerCreation(data) {
   let errors = {};
 
-  data.name = !isEmpty(data.username) ? data.username : "";
-  data.owner = !isEmpty(data.email) ? data.email : "";
-  data.password = !isEmpty(data.password) ? data.password : "";
-  data.password2 = !isEmpty(data.password2) ? data.password2 : "";
+  data.name = !isEmpty(data.name) ? data.name : "";
+  data.owner = !isEmpty(data.owner) ? data.owner : "";
 
-  if (!Validator.isLength(data.username, { min: 4, max: 30 })) {
-    errors.username = "Username must be between 4 and 30 characters";
+  if (!Validator.isLength(data.name, { min: 1, max: 20 })) {
+    errors.name = "Server must be between 1 and 20 characters";
   }
 
-  if (Validator.isEmpty(data.username)) {
-    errors.username = "Username field is required";
-  }
-
-  if (Validator.isEmpty(data.email)) {
-    errors.email = "Email field is required";
-  }
-
-  if (!Validator.isEmail(data.email)) {
-    errors.email = "Email is invalid";
-  }
-
-  if (Validator.isEmpty(data.password)) {
-    errors.password = "Password field is required";
-  }
-
-  if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
-    errors.password = "Password must be at least 6 characters";
-  }
-
-  if (Validator.isEmpty(data.password2)) {
-    errors.password2 = "Confirm Password field is required";
-  }
-
-  if (!Validator.equals(data.password, data.password2)) {
-    errors.password2 = "Passwords must match";
+  if (Validator.isEmpty(data.name)) {
+    errors.name = "Server needs a name";
   }
 
   return {
