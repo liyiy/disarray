@@ -30,17 +30,21 @@ class NewServer extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          value={this.state.name}
-          onChange={this.update("name")}
-          className="server-form-name"
-          placeholder="Enter a server name"
-          required
-        />
-        <input type="submit" value="submit" />
-      </form>
+      <div className="new-server-container">
+        <h1>CREATE YOUR SERVER</h1>
+        <h3>By creating a new server, you have access to free text chat to use amongst your friends</h3>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            value={this.state.name}
+            onChange={this.update("name")}
+            className="server-form-name"
+            placeholder="Enter a server name"
+            required
+          />
+          <input type="submit" value="submit" />
+        </form>
+      </div>
     )
   }
 }

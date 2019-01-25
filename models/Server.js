@@ -13,7 +13,8 @@ const ServerSchema = new Schema({
   },
   users: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
   },
   channels: {
     type: Schema.Types.ObjectId,

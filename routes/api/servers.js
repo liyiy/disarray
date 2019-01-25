@@ -18,34 +18,40 @@ router.post('/', passport.authenticate('jwt', { session: false }),
     const newServer = new Server({
       name: req.body.name,
       owner: req.user.id,
-      users: [req.user.id]
+      users: req.user.id
     });
     
     newServer.save().then(server => res.json(server));
 });
 
-router.get('/', passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    // const { errors, isValid } = validateServerCreation(req.body);
 
-    // if (!isValid) {
+router.get('/', passport.authenticate('jwt', { session: false }),
+(req, res) => {
+  // const { errors, isValid } = validateServerCreation(req.body);
+  
+  // if (!isValid) {
     //   return res.status(400).json(errors);
     // }
-
+    
     Server.find({ users: req.user.id })
-      .then(servers => res.json(servers));
+    .then(servers => res.json(servers));
 });
 
 router.get('/:server_id', (req, res) => {
-  Server.find({ id: req.params.server_id })
-    .then(server => res.json(server));
+  console.log("this is THE SERVER ID")
+  console.log(req.params.server_id);
+  Server.findById(req.params.server_id)
+    .then(server => res.json(server))
+    .catch(err => res.status(404).json({ msg: "no server found" }));
 });
 
-router.delete('/:server_id', (req, res) => {
+// router.patch('/:server_id', (req, res) => {
+//   Server.find({ id: req.params.server_id })
+// })
 
-  Server.findByIdAndRemove({ id: req.params.server_id })
-    .then(msg => res.json(msg));
-  
+router.delete('/:server_id', (req, res) => {
+  Server.remove({ _id: req.params.server_id })
+    .then(() => res.json({ msg: "deleted server" }));
 });
 
 module.exports = router;

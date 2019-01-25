@@ -20,7 +20,7 @@ export const receiveServer = payload => {
 
 export const removeServer = payload => {
   return {
-    type: REMOVE_POST,
+    type: REMOVE_SERVER,
     payload
   };
 };
@@ -42,5 +42,5 @@ export const createServer = serverData => dispatch => {
 
 export const deleteServer = serverId => dispatch => {
   return ServerApiUtil.deleteServer(serverId)
-    .then(response => dispatch(removeServer));
+    .then(response => dispatch(removeServer(response)));
 };
