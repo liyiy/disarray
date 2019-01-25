@@ -7,7 +7,7 @@ export const receiveServers = payload => {
   return {
     type: RECEIVE_SERVERS,
     payload
-  }
+  };
 };
 
 export const receiveServer = payload => {

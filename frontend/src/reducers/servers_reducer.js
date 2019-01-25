@@ -6,11 +6,9 @@ const serversReducer = (state = {}, action) => {
   let newState = merge({}, state);
   switch(action.type) {
     case RECEIVE_SERVERS:
-      merge({}, newState, action.payload)
-      return newState;
+      return merge({}, newState, action.payload.data);
     case RECEIVE_SERVER:
-      merge({}, newState, action.payload)
-      return newState;
+      return merge({}, newState, action.payload.data);
     default:
       return state;
   }

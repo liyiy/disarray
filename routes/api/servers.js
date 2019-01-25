@@ -14,15 +14,15 @@ router.post('/', passport.authenticate('jwt', { session: false }),
     // if	(!isValid) {
     //   return res.status(400).json(errors);
     // }
-    
+
     const newServer = new Server({
       name: req.body.name,
       owner: req.user.id,
       users: [req.user.id]
-    })
+    });
     
     newServer.save().then(server => res.json(server));
-})
+});
 
 router.get('/', passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -33,13 +33,13 @@ router.get('/', passport.authenticate('jwt', { session: false }),
     // }
 
     Server.find({ users: req.user.id })
-      .then(servers => res.json(servers))
-})
+      .then(servers => res.json(servers));
+});
 
 router.get('/:server_id', (req, res) => {
   Server.find({ id: req.params.server_id })
-    .then(server => res.json(server))
-})
+    .then(server => res.json(server));
+});
 
 module.exports = router;
 

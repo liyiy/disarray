@@ -2,31 +2,41 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { createServer, fetchServers, fetchServer } from '../../actions/server_actions';
+import NewServer from './new_server';
 
-const msp = (state, oldProps) => {
-  debugger
+const msp = (state, ownProps) => {
   return {
-
-  }
-}
+    servers: Object.values(ownProps.servers)
+  };
+};
 
 const mdp = dispatch => {
   return {
-    createServer: serverData => dispatch(createServer(serverData)),
-    fetchServers: () => dispatch(fetchServers()),
     fetchServer: serverId => dispatch(fetchServer(serverId))
-  }
-}
-
+  };
+};
 class ServerList extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {servers: []}
+    super(props);
+    this.state = {servers: this.props.servers};
   }
 
   render(){
+    let list;
+    if (this.props.servers) {
+      list = this.props.servers.map((server, idx) => {
+        return (<li key={idx} className="server-name">{server.name}</li>)
+      })
+    } else {
+      list = null;
+    }
     return (
-      <h1>THIS IS THE SERVER LIST</h1>
+      <div className="servers-container">
+        <ul>
+          {list}
+          <li><NewServer/></li>
+        </ul>
+      </div>
     )
   }
 }

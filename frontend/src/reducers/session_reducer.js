@@ -10,7 +10,7 @@ const sessionReducer = (state = _nullUser, action) => {
         username: action.payload.username, 
         email: action.payload.email };
     default: 
-      return state;    
+      return state;
   }
 };
 

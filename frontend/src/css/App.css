@@ -82,3 +82,8 @@ html, body {
   cursor: pointer;
 }
 
+.servers-container {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid red;
+}
