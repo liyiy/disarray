@@ -1,10 +1,12 @@
 import React from 'react';
 import { createServer } from '../../actions/server_actions';
 import { connect } from 'react-redux';
+import { closeModal } from '../../actions/modal_actions';
 
 const mdp = dispatch => {
   return {
     createServer: serverData => dispatch(createServer(serverData)),
+    closeModal: () => dispatch(closeModal())
   };
 };
 

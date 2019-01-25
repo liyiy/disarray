@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { createServer, fetchServers, fetchServer } from '../../actions/server_actions';
+import { fetchServer } from '../../actions/server_actions';
 import NewServer from './new_server';
+import { openModal } from '../../actions/modal_actions';
 
 const msp = (state, ownProps) => {
   return {
@@ -12,7 +13,8 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
   return {
-    fetchServer: serverId => dispatch(fetchServer(serverId))
+    fetchServer: serverId => dispatch(fetchServer(serverId)),
+    openModal: modal => dispatch(openModal(modal))
   };
 };
 class ServerList extends React.Component {
@@ -36,6 +38,7 @@ class ServerList extends React.Component {
           {list}
           <li><NewServer/></li>
         </ul>
+        <button onClick={() => this.props.openModal('createServer')}>new server</button>
       </div>
     )
   }
