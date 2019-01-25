@@ -3,7 +3,6 @@ import { fetchServer } from '../../actions/server_actions';
 import { connect } from 'react-redux';
 
 const msp = (state, ownProps) => {
-  debugger 
   return {
     server: state.entities.servers[ownProps.match.params.serverId]
   };
@@ -24,7 +23,6 @@ class ServerShow extends React.Component {
   // componentDidMount
 
   render() {
-    debugger 
     if (this.props.server) {
       return (
         <>
