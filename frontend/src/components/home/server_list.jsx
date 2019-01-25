@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchServer, deleteServer } from '../../actions/server_actions';
-import NewServer from './new_server';
 import { openModal } from '../../actions/modal_actions';
 
 const msp = (state, ownProps) => {

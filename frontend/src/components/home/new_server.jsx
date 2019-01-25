@@ -30,21 +30,25 @@ class NewServer extends React.Component {
 
   render() {
     return (
-      <div className="new-server-container">
-        <h1>CREATE YOUR SERVER</h1>
-        <h3>By creating a new server, you have access to free text chat to use amongst your friends</h3>
-        <form onSubmit={this.handleSubmit}>
+      <form className="new-server-container" onSubmit={this.handleSubmit}>
+        <div className="new-server-top">
+          <h1>CREATE YOUR SERVER</h1>
+          <h3>By creating a new server, you have access to free text chat to use amongst your friends</h3>
+          <label for="new-server-name">SERVER NAME</label>
           <input
             type="text"
             value={this.state.name}
             onChange={this.update("name")}
-            className="server-form-name"
+            className="new-server-name"
             placeholder="Enter a server name"
+            autofocus={true}
             required
           />
-          <input type="submit" value="submit" />
-        </form>
-      </div>
+        </div>
+        <div className="new-server-bottom">
+          <input className="new-server-submit" type="submit" value="Create" />
+        </div>
+      </form>
     )
   }
 }

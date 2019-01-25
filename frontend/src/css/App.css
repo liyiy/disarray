@@ -1,6 +1,10 @@
+@import url("reset.css");
+@import url("new_server.css");
+
 
 html, body {
   height: 100%;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #root {
@@ -15,7 +19,6 @@ html, body {
   width: 100%;
   justify-content: center;
   align-items: center;
-  font-family: 'Open Sans', sans-serif;
 }
 
 .login-form {
