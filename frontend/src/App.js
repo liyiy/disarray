@@ -19,7 +19,7 @@ class App extends Component {
         <Modal />
         <AuthRoute exact path='/login' component={LogInFormContainer}/>
         <AuthRoute exact path='/signup' component={SignUpFormContainer}/>
-        <ProtectedRoute exact path='/' component={HomePage}/>
+        <ProtectedRoute path='/' component={HomePage}/>
       </>
     );
   }

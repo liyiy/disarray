@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 import { logoutUser } from '../../util/session_api_util';
 import { fetchServers } from '../../actions/server_actions';
 import ServerList from './server_list';
+import ServerShow from './server_show';
 
 const msp = (state, ownProps) => {
   return {
@@ -37,6 +39,7 @@ class Home extends React.Component {
       <div className="home">
         <ServerList servers={this.props.servers}/>
         <button onClick={this.logout}>Logout</button>
+        <Route exact path='/servers/:serverId' component={ServerShow} />
         <h1>Hi this is the home page</h1>
       </div>
     )

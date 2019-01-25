@@ -6,7 +6,11 @@ const serversReducer = (state = {}, action) => {
   let newState = merge({}, state);
   switch(action.type) {
     case RECEIVE_SERVERS:
-      return merge({}, newState, action.payload.data);
+      const servers = {};
+      action.payload.data.forEach(server => {
+          servers[server._id] = server;
+      });
+      return merge({}, newState, servers);
     case RECEIVE_SERVER:
       return merge({}, newState, action.payload.data);
     case REMOVE_SERVER:

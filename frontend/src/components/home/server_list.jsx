@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { fetchServer, deleteServer } from '../../actions/server_actions';
 import { openModal } from '../../actions/modal_actions';
+import ServerShow from './server_show';
 
 const msp = (state, ownProps) => {
   return {
@@ -30,10 +31,19 @@ class ServerList extends React.Component {
   // }
 
   render(){
+
     let list;
     if (this.props.servers) {
       list = this.props.servers.map((server, idx) => {
-        return (<li key={idx} className="server-name">{server.name}<button onClick={this.deleteServer}></button></li>)
+        return (
+        <li key={idx} 
+        className="server-name"
+        onClick={() => this.props.history.push(`/servers/${server._id}`)}
+        >
+        {server.name}
+        <button onClick={this.deleteServer}>
+        </button>
+        </li>)
       })
     } else {
       list = null;
