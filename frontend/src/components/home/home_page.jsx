@@ -35,9 +35,11 @@ class Home extends React.Component {
   render() {
     return (
       <>
+        <div className="home">
         <ServerList servers={this.props.servers}/>
         <button onClick={this.logout}>Logout</button>
         <h1>Hi this is the home page</h1>
+        </div>
       </>
     )
   }

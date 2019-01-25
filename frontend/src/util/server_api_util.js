@@ -11,3 +11,8 @@ export const fetchServer = serverId => {
 export const fetchUserServers = () => {
   return axios.get(`api/servers/`);
 };
+
+export const deleteServer = serverId => {
+  return axios.delete(`api/servers/${serverId}`);
+};
+

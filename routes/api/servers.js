@@ -41,5 +41,12 @@ router.get('/:server_id', (req, res) => {
     .then(server => res.json(server));
 });
 
+router.delete('/:server_id', (req, res) => {
+
+  Server.findByIdAndRemove({ id: req.params.server_id })
+    .then(msg => res.json(msg));
+  
+});
+
 module.exports = router;
 
