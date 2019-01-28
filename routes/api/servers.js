@@ -38,8 +38,7 @@ router.get('/', passport.authenticate('jwt', { session: false }),
 });
 
 router.get('/:server_id', (req, res) => {
-  console.log("this is THE SERVER ID")
-  console.log(req.params.server_id);
+
   Server.findById(req.params.server_id)
     .then(server => res.json(server))
     .catch(err => res.status(404).json({ msg: "no server found" }));

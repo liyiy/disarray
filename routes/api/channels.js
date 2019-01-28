@@ -8,13 +8,14 @@ router.post('/', (req, res) => {
     name: req.body.name,
     server: req.body.server_id
   });
-
+  console.log(req.body)
   newChannel.save().then(channel => res.json(channel));
 });
 
 router.get('/', (req, res) => {
-
-  Channel.find({ server: req.body.server_id })
+  console.log("THIS IS THE SERVER ID");
+  console.log(req.body);
+  Channel.find({ server: req.body.server._id })
     .then(channels => res.json(channels));
 });
 

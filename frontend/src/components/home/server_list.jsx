@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchServer, deleteServer } from '../../actions/server_actions';
+import { deleteServer } from '../../actions/server_actions';
 import { logoutUser } from '../../util/session_api_util';
 import { openModal } from '../../actions/modal_actions';
 
@@ -13,7 +13,6 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
   return {
-    fetchServer: serverId => dispatch(fetchServer(serverId)),
     openModal: modal => dispatch(openModal(modal)),
     deleteServer: serverId => dispatch(deleteServer(serverId)),
     logoutUser: () => dispatch(logoutUser())

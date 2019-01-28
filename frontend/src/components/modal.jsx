@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { closeModal } from '../actions/modal_actions';
 import { withRouter } from 'react-router-dom';
 import NewServer from './home/new_server';
+import NewChannel from './channels/new_channel';
 
 const msp = state => {
   return {
@@ -23,6 +24,9 @@ function Modal({modal, closeModal}) {
 
   let component;
   switch(modal) {
+    case 'createChannel':
+      component = <NewChannel />;
+      break;
     case 'createServer':
       component = <NewServer />;
       break;

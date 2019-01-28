@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from './util/route_util.js';
 import LogInFormContainer from './components/session/login_form_container';
 import SignUpFormContainer from './components/session/signup_form_container';
