@@ -1,5 +1,6 @@
 @import url("reset.css");
 @import url("new_server.css");
+@import url("server_show.css");
 
 
 html, body {
@@ -110,4 +111,5 @@ html, body {
 
 .home {
   display: flex;
+  height: 100%;
 }

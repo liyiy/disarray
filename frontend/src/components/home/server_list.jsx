@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { fetchServer, deleteServer } from '../../actions/server_actions';
+import { logoutUser } from '../../util/session_api_util';
 import { openModal } from '../../actions/modal_actions';
-import ServerShow from './server_show';
 
 const msp = (state, ownProps) => {
   return {
@@ -15,7 +15,8 @@ const mdp = dispatch => {
   return {
     fetchServer: serverId => dispatch(fetchServer(serverId)),
     openModal: modal => dispatch(openModal(modal)),
-    deleteServer: serverId => dispatch(deleteServer(serverId))
+    deleteServer: serverId => dispatch(deleteServer(serverId)),
+    logoutUser: () => dispatch(logoutUser())
   };
 };
 class ServerList extends React.Component {
@@ -54,6 +55,8 @@ class ServerList extends React.Component {
           {list}
         </ul>
         <button onClick={() => this.props.openModal('createServer')}>new server</button>
+        <button onClick={this.props.logoutUser}>Logout</button>
+
       </div>
     )
   }

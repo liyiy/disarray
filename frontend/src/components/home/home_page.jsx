@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
-import { logoutUser } from '../../util/session_api_util';
 import { fetchServers } from '../../actions/server_actions';
 import ServerList from './server_list';
 import ServerShow from './server_show';
@@ -14,7 +13,6 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
   return {
-    logoutUser: () => dispatch(logoutUser()),
     fetchServers: () => dispatch(fetchServers())
   };
 };
@@ -23,24 +21,17 @@ const mdp = dispatch => {
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.logout = this.logout.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchServers();
   }
 
-  logout() {
-    this.props.logoutUser();
-  }
-
   render() {
     return (
       <div className="home">
         <ServerList servers={this.props.servers}/>
-        <button onClick={this.logout}>Logout</button>
         <Route exact path='/servers/:serverId' component={ServerShow} />
-        <h1>Hi this is the home page</h1>
       </div>
     )
   }
