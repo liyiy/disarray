@@ -37,14 +37,12 @@ class ServerList extends React.Component {
     if (this.props.servers) {
       list = this.props.servers.map((server, idx) => {
         return (
-        <>
         <li key={idx} 
             className="server-name"
             onClick={() => this.props.history.push(`/servers/${server._id}`)}>
             {server.name}
             <button onClick={(e) => this.deleteServer(e, server._id)}>Delete server</button>
         </li>
-        </>
         )
       })
     } else {

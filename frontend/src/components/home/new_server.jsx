@@ -36,7 +36,7 @@ class NewServer extends React.Component {
           <h1>CREATE YOUR SERVER</h1>
           <h3>By creating a new server, you have access to free text chat to use amongst your friends</h3>
           <div className="new-server-form">
-            <label for="new-server-name" className="server-name-label">SERVER NAME</label>
+            <label className="server-name-label">SERVER NAME</label>
             <input
               type="text"
               value={this.state.name}
