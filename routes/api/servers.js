@@ -51,7 +51,7 @@ router.get('/:server_id', (req, res) => {
 
 router.delete('/:server_id', (req, res) => {
   Server.remove({ _id: req.params.server_id })
-    .then(() => res.json({ msg: "deleted server" }));
+    .then(() => res.json({ id: req.params.server_id }));
 });
 
 module.exports = router;

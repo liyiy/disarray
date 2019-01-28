@@ -23,13 +23,13 @@ class ServerList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {servers: this.props.servers};
-    // this.deleteServer = this.deleteServer.bind(this);
+    this.deleteServer = this.deleteServer.bind(this);
   }
 
-  // deleteServer(e) {
-  //   e.preventDefault();
-  //   this.props.deleteServer();
-  // }
+  deleteServer(e, serverId) {
+    e.stopPropagation();
+    this.props.deleteServer(serverId);
+  }
 
   render(){
 
@@ -37,14 +37,15 @@ class ServerList extends React.Component {
     if (this.props.servers) {
       list = this.props.servers.map((server, idx) => {
         return (
+        <>
         <li key={idx} 
-        className="server-name"
-        onClick={() => this.props.history.push(`/servers/${server._id}`)}
-        >
-        {server.name}
-        <button onClick={this.deleteServer}>
-        </button>
-        </li>)
+            className="server-name"
+            onClick={() => this.props.history.push(`/servers/${server._id}`)}>
+            {server.name}
+            <button onClick={(e) => this.deleteServer(e, server._id)}>Delete server</button>
+        </li>
+        </>
+        )
       })
     } else {
       list = null;
