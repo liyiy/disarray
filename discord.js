@@ -6,7 +6,7 @@ const app = express();
 const db = require('./config/keys').mongoURI;
 const users = require('./routes/api/users');
 const servers = require('./routes/api/servers');
-// const channels = require('./routes/api/channels');
+const channels = require('./routes/api/channels');
 const passport = require('passport');
 require('./config/passport')(passport);
 
@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/api/users", users);
 app.use("/api/servers", servers);
+app.use("/api/channels", channels);
 
 app.use(passport.initialize());
 
