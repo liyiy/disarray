@@ -1,0 +1,50 @@
+.server-show-container {
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid green; */
+  color: #f8f8f8;
+  background-color: #282b30;
+  width: 240px;
+  height: 100%;
+}
+
+.server-show-header {
+  display: flex;
+  font-size: 15px;
+  vertical-align: center;
+  min-height: 43px;
+  background-color: #2f3136;
+  padding: .6em;
+  padding-left: 15px;
+  padding-top: 12px;
+  border-bottom: 1px solid black;
+}
+
+.server-invite {
+  background-color: #282b30;
+  display: flex;
+  justify-content: center;
+  min-height: 210px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 400;
+  color: #a3a5a6;
+  border: 1px solid white;
+}
+.server-invite div {
+  border: 1px solid yellow;
+}
+.filler-channels {
+  background-color: #2f3136;
+  height: 100%;
+}
+
+.server-show-user {
+  
+  display: flex;
+  align-items: center;
+  height: 55px;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0 10px;
+}
