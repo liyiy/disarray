@@ -27,7 +27,7 @@ export const removeChannel = payload => {
 };
 
 export const fetchChannels = (serverId) => dispatch => {
-  return ChannelApiUtil.fetchChannels(serverId)
+  return ChannelApiUtil.fetchChannels(serverId._id)
     .then(response => dispatch(receiveChannels(response)));
 };
 

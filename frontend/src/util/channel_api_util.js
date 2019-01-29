@@ -8,9 +8,8 @@ export const fetchChannel = channelId => {
   return axios.get(`api/channels/${channelId}`);
 };
 
-export const fetchChannels = server => {
-  debugger 
-  return axios.get(`api/channels`, server);
+export const fetchChannels = (serverId)=> { 
+  return axios.get(`api/channels/server/${serverId}`);
 };
 
 export const deleteChannel = channelId => {

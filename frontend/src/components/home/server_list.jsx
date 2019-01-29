@@ -15,7 +15,7 @@ const mdp = dispatch => {
   return {
     openModal: modal => dispatch(openModal(modal)),
     deleteServer: serverId => dispatch(deleteServer(serverId)),
-    logoutUser: () => dispatch(logoutUser())
+    logoutUser: () => dispatch(logoutUser()),
   };
 };
 class ServerList extends React.Component {
