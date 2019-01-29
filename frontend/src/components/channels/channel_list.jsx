@@ -40,7 +40,7 @@ class ChannelList extends React.Component {
         return (
           <li key={idx}
             className="channel-name"
-            onClick={() => this.props.history.push(`/channels/${channel._id}`)}>
+            onClick={() => this.props.history.push(`servers/${this.props.serverId}/${channel._id}`)}>
             {channel.name}
             <button ></button>
           </li>

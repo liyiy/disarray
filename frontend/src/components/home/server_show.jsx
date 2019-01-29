@@ -33,13 +33,9 @@ class ServerShow extends React.Component {
   componentDidMount() {
     // this.props.fetchServer(this.props.serverId);
     if (this.props.server) {
-      this.props.fetchChannels(this.props.server);
+      this.props.fetchChannels(this.props.server._id);
     };
   };
-
-  // componentWillUnmount() {
-  //   this.setState({channels: []});
-  // }
 
   componentDidUpdate(oldProps) {
     if (oldProps.server) {

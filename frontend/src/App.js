@@ -4,6 +4,7 @@ import { AuthRoute, ProtectedRoute } from './util/route_util.js';
 import LogInFormContainer from './components/session/login_form_container';
 import SignUpFormContainer from './components/session/signup_form_container';
 import HomePage from './components/home/home_page';
+import ServerShow from './components/home/server_show';
 import Modal from './components/modal';
 import './css/App.css';
 
@@ -14,14 +15,16 @@ class App extends Component {
   // }
 
   render() {
-    return (
-      <>
+    return <>
         <Modal />
-        <AuthRoute exact path='/login' component={LogInFormContainer}/>
-        <AuthRoute exact path='/signup' component={SignUpFormContainer}/>
-        <ProtectedRoute path='/' component={HomePage}/>
-      </>
-    );
+        <AuthRoute exact path="/login" component={LogInFormContainer} />
+        <AuthRoute exact path="/signup" component={SignUpFormContainer} />
+        <div className="home">
+          <ProtectedRoute path="/" component={HomePage} />
+          <ProtectedRoute exact path="/servers/:serverId" component={ServerShow} />
+          {/* <ProtectedRoute component={ChatBox}/> */}
+        </div>
+      </>;
   }
 }
 

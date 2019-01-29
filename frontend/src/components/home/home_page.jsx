@@ -31,7 +31,7 @@ class Home extends React.Component {
     return (
       <div className="home">
         <ServerList servers={this.props.servers}/>
-        <Route exact path='/servers/:serverId' component={ServerShow} />
+        {/* <Route exact path='/servers/:serverId' component={ServerShow} /> */}
       </div>
     )
   }
