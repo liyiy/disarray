@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const passport = require('passport');
+// const channels = require('./channels').Router();
 const Server = require('../../models/Server');
 // const validateServerCreation = require("../../validation/server");
 
@@ -52,6 +52,13 @@ router.delete('/:server_id', (req, res) => {
   Server.remove({ _id: req.params.server_id })
     .then(() => res.json({ id: req.params.server_id }));
 });
+
+// router.use('/:serverId/channels', function(req, res, next) {
+//   req.serverId = req.params.serverId;
+//   next();
+// }, channels);
+
+
 
 module.exports = router;
 

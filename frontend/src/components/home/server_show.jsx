@@ -5,10 +5,15 @@ import { connect } from 'react-redux';
 import ChannelList from '../channels/channel_list';
 
 const msp = (state, ownProps) => {
+  let channels;
+  if (state.entities.channels) {
+    channels = Object.values(state.entities.channels);
+  } 
   return {
     server: state.entities.servers[ownProps.match.params.serverId],
+    serverId: ownProps.match.params.serverId,
     user: state.session.username,
-    channels: state.entities.channels
+    channels: channels
   };
 };
 
@@ -23,14 +28,18 @@ class ServerShow extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { server: this.props.server, channels: this.props.channels };
   }
 
   componentDidMount() {
+    // this.props.fetchServer(this.props.serverId);
     if (this.props.server) {
-      this.props.fetchChannels(this.props.server._id);
+      this.props.fetchChannels(this.props.server);
     };
   };
+
+  // componentWillUnmount() {
+  //   this.setState({channels: []});
+  // }
 
   componentDidUpdate(oldProps) {
     if (oldProps.server) {
@@ -50,7 +59,7 @@ class ServerShow extends React.Component {
             </div>
             <div className="filler-channels">
               <ChannelList 
-                channels={this.state.channels} 
+                channels={this.props.channels} 
                 serverId={this.props.server._id} />
             </div>
           <div className="server-show-user">

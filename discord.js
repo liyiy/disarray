@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/api/users", users);
 app.use("/api/servers", servers);
+// servers.use("/:serverId/channels", channels);
 app.use("/api/channels", channels);
 
 app.use(passport.initialize());

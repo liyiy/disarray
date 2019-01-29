@@ -12,10 +12,17 @@ router.post('/', (req, res) => {
   newChannel.save().then(channel => res.json(channel));
 });
 
-router.get('/:server_id', (req, res) => {
+router.get('/server/:server_id', (req, res) => {
+  // console.log("THIS IS THE SERVER ID");
+  // console.log(req.body);
   Channel.find({ server: req.params.server_id })
-    .then(channels => res.json(channels));
+    .then(channels => res.json(channels))
+    .catch(err => res.status(404).json({ msg: "can't find channels" }));
 });
+
+// router.get('/', (req, res) => {
+//   Channel
+// })
 
 router.get('/:channel_id', (req, res) => {
 

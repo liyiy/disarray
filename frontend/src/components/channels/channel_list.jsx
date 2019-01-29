@@ -5,14 +5,14 @@ import { createChannel, deleteChannel } from '../../actions/channel_actions';
 import { openModal } from '../../actions/modal_actions';
 
 const msp = (state, ownProps) => {
+  let channels;
   if (ownProps.channels) {
-    return {
-      channels: Object.values(ownProps.channels)
-    };
+    channels = Object.values(ownProps.channels);
   } else {
-    return {
-      channels: []
-    };
+    channels = null;
+  }
+  return {
+    channels: channels
   };
 };
 
@@ -31,6 +31,7 @@ class ChannelList extends React.Component {
     super(props);
     // this.deleteChannel = this.deleteChannel.bind(this);
   }
+
 
   render() {
     let channels;
