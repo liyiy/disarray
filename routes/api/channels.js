@@ -33,7 +33,7 @@ router.get('/:channel_id', (req, res) => {
 
 router.delete('/:channel_id', (req, res) => {
   Channel.remove({ _id: req.params.channel_id })
-    .then(() => res.json({ id: req.params.server_id }));
+    .then(() => res.json({ id: req.params.channel_id }));
 });
 
 module.exports = router;

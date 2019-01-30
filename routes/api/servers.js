@@ -23,7 +23,7 @@ router.post('/', passport.authenticate('jwt', { session: false }),
     });
 
     const defaultChannel = new Channel({
-      name: "General",
+      name: "general",
       server: newServer.id
     });
 

@@ -29,7 +29,12 @@ class ChannelList extends React.Component {
 
   constructor(props) {
     super(props);
-    // this.deleteChannel = this.deleteChannel.bind(this);
+    this.deleteChannel = this.deleteChannel.bind(this);
+  }
+
+  deleteChannel(e, channelId) {
+    e.stopPropagation();
+    this.props.deleteChannel(channelId);
   }
 
 
@@ -41,18 +46,21 @@ class ChannelList extends React.Component {
           <li key={idx}
             className="channel-name"
             onClick={() => this.props.history.push(`servers/${this.props.serverId}/${channel._id}`)}>
-            {channel.name}
-            <button ></button>
+            #  {channel.name}
+            <div onClick={(e) => this.deleteChannel(e, channel._id)}>X</div>
           </li>
         )
       })
     }
     return (
       <div className="channels-container">
-        <ul>
+        <div className="channels-header">
+          <div className="text-channels">TEXT CHANNELS</div>
+          <div className="new-channel-btn" onClick={() => this.props.openModal('createChannel')}>+</div>
+        </div>
+        <ul className="channels-list">
           {channels}
         </ul>
-        <button onClick={() => this.props.openModal('createChannel')}>new channel</button>
       </div>
     );
   }
