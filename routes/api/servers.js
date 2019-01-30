@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-// const channels = require('./channels').Router();
+
 const Server = require('../../models/Server');
 const Channel = require('../../models/Channel');
 // const validateServerCreation = require("../../validation/server");
