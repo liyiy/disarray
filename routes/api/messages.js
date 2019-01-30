@@ -20,8 +20,8 @@ router.post('/', passport.authenticate('jwt', { session: false }),
   }
 );
 
-router.get('/', (req, res) => {
-  Message.find({ modelId: req.body.modelId })
+router.get('/:modelId', (req, res) => {
+  Message.find({ modelId: req.params.modelId })
     .then(messages => res.json(messages))
 })
 
