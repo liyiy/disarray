@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 // const channels = require('./channels').Router();
 const Server = require('../../models/Server');
+const Channel = require('../../models/Channel');
 // const validateServerCreation = require("../../validation/server");
 
 router.get('/servers', (req, res) => res.json({ msg: "this is the servers route" }));
@@ -20,6 +21,13 @@ router.post('/', passport.authenticate('jwt', { session: false }),
       owner: req.user.id,
       users: req.user.id
     });
+
+    const defaultChannel = new Channel({
+      name: "General",
+      server: newServer.id
+    });
+
+    defaultChannel.save();
     
     newServer.save().then(server => res.json(server));
 });
@@ -53,10 +61,7 @@ router.delete('/:server_id', (req, res) => {
     .then(() => res.json({ id: req.params.server_id }));
 });
 
-// router.use('/:serverId/channels', function(req, res, next) {
-//   req.serverId = req.params.serverId;
-//   next();
-// }, channels);
+
 
 
 
