@@ -12,13 +12,13 @@ router.post('/', (req, res) => {
 
   // const server = Server.find({ _id: req.body.server_id });
   // server.channels.push(newChannel.id);
-  Server.findByIdAndUpdate(
-    req.body.server_id, 
-    {$push: {channels: newChannel._id}},
-    {$safe: true, upsert: true, new: true},
-    function(err, model) {
-      console.log(err);
-  });
+  // Server.findByIdAndUpdate(
+  //   req.body.server_id, 
+  //   {$push: {channels: newChannel._id}},
+  //   {$safe: true, upsert: true, new: true},
+  //   function(err, model) {
+  //     console.log(err);
+  // });
 
   // Server.find({ _id: req.body.server_id }).channels.push(newChannel.id);
   newChannel.save()
@@ -46,13 +46,14 @@ router.get('/:channel_id', (req, res) => {
 
 router.delete('/:channel_id', (req, res) => {
   // let channel = Channel.findById(req.params.channel_id);
-  Server.findOneAndUpdate(
-    { channels: req.params.channel_id },
-    { $pull: { channels: req.params.channel_id } },
-    { new: true },
-    function (err, model) {
-      console.log(err);
-  });
+  // Server.findOneAndUpdate(
+  //   { channels: req.params.channel_id },
+  //   { $pull: { channels: req.params.channel_id } },
+  //   { new: true },
+  //   function (err, model) {
+  //     console.log(err);
+  // });
+
   Channel.remove({ _id: req.params.channel_id })
     .then(() => res.json({ id: req.params.channel_id }));
 });

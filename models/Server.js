@@ -20,9 +20,9 @@ const ServerSchema = new Schema({
   //   type: Schema.Types.ObjectId,
   //   ref: 'Channel'
   // },
-  channels: {
-    type: Array,
-  },
+  // channels: {
+  //   type: Array,
+  // },
   date: {
     type: Date,
     default: Date.now()

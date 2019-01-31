@@ -27,7 +27,7 @@ router.post('/', passport.authenticate('jwt', { session: false }),
       server: newServer.id
     });
 
-    newServer.channels.push(defaultChannel.id);
+    // newServer.channels.push(defaultChannel.id);
 
     defaultChannel.save();
     
@@ -48,7 +48,6 @@ router.get('/', passport.authenticate('jwt', { session: false }),
 });
 
 router.get('/:server_id', (req, res) => {
-
   Server.findById(req.params.server_id)
     .then(server => res.json(server))
     .catch(err => res.status(404).json({ msg: "no server found" }));

@@ -35,11 +35,10 @@ class ServerList extends React.Component {
     let list;
     if (this.props.servers) {
       list = this.props.servers.map((server, idx) => {
-        debugger 
         return (
         <li key={idx} 
             className="server-name"
-            onClick={() => this.props.history.push(`/servers/${server._id}/${server.channels[0]}`)}>
+            onClick={() => this.props.history.push(`/servers/${server._id}/`)}>
             {server.name}
             <button onClick={(e) => this.deleteServer(e, server._id)}>Delete server</button>
         </li>
@@ -55,7 +54,6 @@ class ServerList extends React.Component {
         </ul>
         <button onClick={() => this.props.openModal('createServer')}>new server</button>
         <button onClick={this.props.logoutUser}>Logout</button>
-
       </div>
     )
   }
