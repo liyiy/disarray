@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { createChannel, deleteChannel } from '../../actions/channel_actions';
+import { fetchServer } from '../../actions/server_actions';
 import { openModal } from '../../actions/modal_actions';
 
 const msp = (state, ownProps) => {
@@ -19,8 +20,9 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
   return {
     createChannel: (serverId) => dispatch(createChannel(serverId)),
-    deleteChannel: (channelId) => dispatch(deleteChannel(channelId)),
-    openModal: modal => dispatch(openModal(modal))
+    deleteChannel: (channel) => dispatch(deleteChannel(channel)),
+    openModal: modal => dispatch(openModal(modal)),
+    fetchServer: serverId => dispatch(fetchServer(serverId))
   };
 };
 
@@ -32,11 +34,10 @@ class ChannelList extends React.Component {
     this.deleteChannel = this.deleteChannel.bind(this);
   }
 
-  deleteChannel(e, channelId) {
+  deleteChannel(e, channel) {
     e.stopPropagation();
-    this.props.deleteChannel(channelId);
+    this.props.deleteChannel(channel).then(this.props.fetchServer(channel.server));
   }
-
 
   render() {
     let channels;
@@ -45,9 +46,9 @@ class ChannelList extends React.Component {
         return (
           <li key={idx}
             className="channel-name"
-            onClick={() => this.props.history.push(`servers/${this.props.serverId}/${channel._id}`)}>
+            onClick={() => this.props.history.push(`/servers/${this.props.serverId}/${channel._id}`)}>
             #  {channel.name}
-            <div onClick={(e) => this.deleteChannel(e, channel._id)}>X</div>
+            <div onClick={(e) => this.deleteChannel(e, channel)}>X</div>
           </li>
         )
       })

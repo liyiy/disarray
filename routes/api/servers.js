@@ -19,13 +19,15 @@ router.post('/', passport.authenticate('jwt', { session: false }),
     const newServer = new Server({
       name: req.body.name,
       owner: req.user.id,
-      users: req.user.id
+      users: req.user.id,
     });
 
     const defaultChannel = new Channel({
       name: "general",
       server: newServer.id
     });
+
+    newServer.channels.push(defaultChannel.id);
 
     defaultChannel.save();
     
@@ -40,9 +42,9 @@ router.get('/', passport.authenticate('jwt', { session: false }),
   // if (!isValid) {
     //   return res.status(400).json(errors);
     // }
-    
+
     Server.find({ users: req.user.id })
-    .then(servers => res.json(servers));
+      .then(servers => res.json(servers));
 });
 
 router.get('/:server_id', (req, res) => {

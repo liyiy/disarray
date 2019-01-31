@@ -5,8 +5,9 @@ import { closeModal } from '../../actions/modal_actions';
 import { withRouter } from 'react-router-dom';
 
 const msp = (state, ownProps) => {
-  return {
-    server_id: ownProps.location.pathname.slice(9)
+  const sliced = ownProps.location.pathname.slice(9);
+  return { 
+    server_id: sliced.match(/\w+/)[0] 
   };
 };
 

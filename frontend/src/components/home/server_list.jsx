@@ -35,10 +35,11 @@ class ServerList extends React.Component {
     let list;
     if (this.props.servers) {
       list = this.props.servers.map((server, idx) => {
+        debugger 
         return (
         <li key={idx} 
             className="server-name"
-            onClick={() => this.props.history.push(`/servers/${server._id}`)}>
+            onClick={() => this.props.history.push(`/servers/${server._id}/${server.channels[0]}`)}>
             {server.name}
             <button onClick={(e) => this.deleteServer(e, server._id)}>Delete server</button>
         </li>
