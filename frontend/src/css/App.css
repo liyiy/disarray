@@ -1,6 +1,7 @@
 @import url("reset.css");
 @import url("new_server.css");
 @import url("server_show.css");
+@import url("server_list.css");
 
 
 html, body {
@@ -84,12 +85,6 @@ html, body {
 .session-submit:hover {
   background-color:#5b76d4;
   cursor: pointer;
-}
-
-.servers-container {
-  display: flex;
-  flex-direction: column;
-  border: 2px solid red;
 }
 
 .modal-background {

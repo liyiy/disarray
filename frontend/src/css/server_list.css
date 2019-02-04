@@ -1,0 +1,84 @@
+.servers-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #202225;
+  width: 70px;
+  align-items: center;
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 10px 0 10px 10px;
+  user-select: none;
+}
+
+.servers-container::-webkit-scrollbar {
+  background: transparent;
+  width: 10px;
+  /* display: hidden; */
+}
+
+.servers-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.server-delete {
+  font-size: 10px;
+}
+
+.new-server-button {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: rgb(47, 49, 54);
+  background: #202225;
+  border-color: #535559;
+  color: #535559;
+  font-size: 2.5em;
+  font-weight: 300;
+  border-style: dashed;
+  border-width: 1px;
+  margin: .5em 0;
+  transition: border-color .25s ease,color .25s ease;
+}
+
+.new-server-button:hover {
+  border-color: hsla(0,0%,100%,.75);
+  color: hsla(0,0%,100%,.75);
+  cursor: pointer;
+}
+
+.new-server-button:active {
+  outline: none;
+}
+
+.server-name {
+  color: white;
+  background-color: rgb(47, 49, 54);
+  border-radius: 50%;
+  text-align: center;
+  font-size: 18px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  box-sizing: border-box;
+  margin: .5em 0;
+}
+
+.servers-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+  height: 100%;
+  position: relative;
+  width: 88px;
+}
+
+.server-name-hidden {
+  display: none;
+}
+
+.server-name-show {
+  color: white;
+}

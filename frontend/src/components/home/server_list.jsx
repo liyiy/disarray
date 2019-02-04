@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { deleteServer } from '../../actions/server_actions';
 import { logoutUser } from '../../util/session_api_util';
 import { openModal } from '../../actions/modal_actions';
+import ServerListItem from './server_list_item';
 
 const msp = (state, ownProps) => {
   return {
@@ -23,11 +24,16 @@ class ServerList extends React.Component {
     super(props);
     this.state = {servers: this.props.servers};
     this.deleteServer = this.deleteServer.bind(this);
+    this.showServerName = this.showServerName.bind(this);
   }
 
   deleteServer(e, serverId) {
     e.stopPropagation();
     this.props.deleteServer(serverId);
+  }
+
+  showServerName(server) {
+    // this.serverName.hidden = false;
   }
 
   render(){
@@ -36,12 +42,17 @@ class ServerList extends React.Component {
     if (this.props.servers) {
       list = this.props.servers.map((server, idx) => {
         return (
-        <li key={idx} 
-            className="server-name"
-            onClick={() => this.props.history.push(`/servers/${server._id}`)}>
-            {server.name}
-            <button onClick={(e) => this.deleteServer(e, server._id)}>Delete server</button>
-        </li>
+        <>
+          <li key={idx}
+              className="server-name"
+              onClick={() => this.props.history.push(`/servers/${server._id}`)}
+              onMouseOver={this.showServerName(server)}>
+              {server.name[0]}
+          </li>
+          <div className="server-name-hidden">{server.name}</div>
+          <button className="server-delete" onClick={(e) => this.deleteServer(e, server._id)}>Delete server</button>
+        </>
+        // <ServerListItem server={server} idx={idx}/>
         )
       })
     } else {
@@ -49,10 +60,12 @@ class ServerList extends React.Component {
     }
     return (
       <div className="servers-container">
-        <ul>
+        <ul className="servers-list">
           {list}
+          <li>
+            <button className="new-server-button" onClick={() => this.props.openModal('createServer')}>+</button>
+          </li>
         </ul>
-        <button onClick={() => this.props.openModal('createServer')}>new server</button>
         <button onClick={this.props.logoutUser}>Logout</button>
 
       </div>
