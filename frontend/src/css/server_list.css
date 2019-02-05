@@ -5,20 +5,8 @@
   width: 70px;
   align-items: center;
   flex: 1;
-  overflow-x: hidden;
-  overflow-y: scroll;
   padding: 10px 0 10px 10px;
   user-select: none;
-}
-
-.servers-container::-webkit-scrollbar {
-  background: transparent;
-  width: 10px;
-  /* display: hidden; */
-}
-
-.servers-container::-webkit-scrollbar-track {
-  background: transparent;
 }
 
 .server-delete {
@@ -27,8 +15,8 @@
 
 .new-server-button {
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  min-height: 50px;
+  min-width: 50px;
   background-color: rgb(47, 49, 54);
   background: #202225;
   border-color: #535559;
@@ -51,6 +39,10 @@
   outline: none;
 }
 
+.server-name-hover {
+  color: white;
+}
+
 .server-name {
   color: white;
   background-color: rgb(47, 49, 54);
@@ -65,18 +57,32 @@
 }
 
 .servers-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  display: flex;
   flex: 1 1 auto;
   height: 100%;
   position: relative;
   width: 88px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
-.server-name-hidden {
-  display: none;
+.servers-list::-webkit-scrollbar {
+  background: transparent;
+  width: 10px;
+}
+
+.servers-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.servers-list::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.servers-list li {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .server-name-show {

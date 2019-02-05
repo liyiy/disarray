@@ -29,10 +29,10 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="home">
+      // <div className="home">
         <ServerList servers={this.props.servers}/>
-        {/* <Route exact path='/servers/:serverId' component={ServerShow} /> */}
-      </div>
+        // <Route exact path='/servers/:serverId' component={ServerShow} />
+      // </div>
     )
   }
 }

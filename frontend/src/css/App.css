@@ -105,6 +105,6 @@ html, body {
 }
 
 .home {
-  display: flex;
+  display: inline-flex;
   height: 100%;
 }

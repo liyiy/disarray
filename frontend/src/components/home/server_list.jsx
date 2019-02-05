@@ -23,17 +23,6 @@ class ServerList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {servers: this.props.servers};
-    this.deleteServer = this.deleteServer.bind(this);
-    this.showServerName = this.showServerName.bind(this);
-  }
-
-  deleteServer(e, serverId) {
-    e.stopPropagation();
-    this.props.deleteServer(serverId);
-  }
-
-  showServerName(server) {
-    // this.serverName.hidden = false;
   }
 
   render(){
@@ -42,17 +31,7 @@ class ServerList extends React.Component {
     if (this.props.servers) {
       list = this.props.servers.map((server, idx) => {
         return (
-        <>
-          <li key={idx}
-              className="server-name"
-              onClick={() => this.props.history.push(`/servers/${server._id}`)}
-              onMouseOver={this.showServerName(server)}>
-              {server.name[0]}
-          </li>
-          <div className="server-name-hidden">{server.name}</div>
-          <button className="server-delete" onClick={(e) => this.deleteServer(e, server._id)}>Delete server</button>
-        </>
-        // <ServerListItem server={server} idx={idx}/>
+          <ServerListItem key={idx} server={server} idx={idx}/>
         )
       })
     } else {
