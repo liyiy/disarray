@@ -1,12 +1,14 @@
 import React from 'react';
 import { createChannel } from '../../actions/channel_actions';
+import { fetchServer } from '../../actions/server_actions';
 import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal_actions';
 import { withRouter } from 'react-router-dom';
 
 const msp = (state, ownProps) => {
-  return {
-    server_id: ownProps.location.pathname.slice(9)
+  const sliced = ownProps.location.pathname.slice(9);
+  return { 
+    server_id: sliced.match(/\w+/)[0] 
   };
 };
 
@@ -14,6 +16,7 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
   return {
     createChannel: channelData => dispatch(createChannel(channelData)),
+    fetchServer: serverId => dispatch(fetchServer(serverId)),
     closeModal: () => dispatch(closeModal())
   };
 };
@@ -34,7 +37,8 @@ class NewChannel extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.createChannel(this.state)
-      .then(this.props.closeModal());
+      .then(this.props.closeModal())
+      .then(this.props.fetchServer(this.props.server_id));
   }
 
   render() {

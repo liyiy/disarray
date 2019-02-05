@@ -16,10 +16,13 @@ const ServerSchema = new Schema({
     ref: 'User',
     required: true
   },
-  channels: {
-    type: Schema.Types.ObjectId,
-    ref: 'Channel'
-  },
+  // channels: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Channel'
+  // },
+  // channels: {
+  //   type: Array,
+  // },
   date: {
     type: Date,
     default: Date.now()

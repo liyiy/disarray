@@ -7,6 +7,7 @@ const db = require('./config/keys').mongoURI;
 const users = require('./routes/api/users');
 const servers = require('./routes/api/servers');
 const channels = require('./routes/api/channels');
+const messages = require('./routes/api/messages');
 const passport = require('passport');
 require('./config/passport')(passport);
 
@@ -21,6 +22,7 @@ app.use("/api/users", users);
 app.use("/api/servers", servers);
 // servers.use("/:serverId/channels", channels);
 app.use("/api/channels", channels);
+app.use("/api/messages", messages);
 
 app.use(passport.initialize());
 

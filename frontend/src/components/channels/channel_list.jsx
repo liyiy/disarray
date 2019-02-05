@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { createChannel, deleteChannel } from '../../actions/channel_actions';
+import { fetchServer } from '../../actions/server_actions';
 import { openModal } from '../../actions/modal_actions';
 
 const msp = (state, ownProps) => {
@@ -19,8 +20,9 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
   return {
     createChannel: (serverId) => dispatch(createChannel(serverId)),
-    deleteChannel: (channelId) => dispatch(deleteChannel(channelId)),
-    openModal: modal => dispatch(openModal(modal))
+    deleteChannel: (channel) => dispatch(deleteChannel(channel)),
+    openModal: modal => dispatch(openModal(modal)),
+    fetchServer: serverId => dispatch(fetchServer(serverId))
   };
 };
 
@@ -29,9 +31,13 @@ class ChannelList extends React.Component {
 
   constructor(props) {
     super(props);
-    // this.deleteChannel = this.deleteChannel.bind(this);
+    this.deleteChannel = this.deleteChannel.bind(this);
   }
 
+  deleteChannel(e, channel) {
+    e.stopPropagation();
+    this.props.deleteChannel(channel).then(this.props.fetchServer(channel.server));
+  }
 
   render() {
     let channels;
@@ -40,19 +46,22 @@ class ChannelList extends React.Component {
         return (
           <li key={idx}
             className="channel-name"
-            onClick={() => this.props.history.push(`servers/${this.props.serverId}/${channel._id}`)}>
-            {channel.name}
-            <button ></button>
+            onClick={() => this.props.history.push(`/servers/${this.props.serverId}/${channel._id}`)}>
+            #  {channel.name}
+            <div onClick={(e) => this.deleteChannel(e, channel)}>X</div>
           </li>
         )
       })
     }
     return (
       <div className="channels-container">
-        <ul>
+        <div className="channels-header">
+          <div className="text-channels">TEXT CHANNELS</div>
+          <div className="new-channel-btn" onClick={() => this.props.openModal('createChannel')}>+</div>
+        </div>
+        <ul className="channels-list">
           {channels}
         </ul>
-        <button onClick={() => this.props.openModal('createChannel')}>new channel</button>
       </div>
     );
   }

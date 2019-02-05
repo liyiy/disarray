@@ -46,7 +46,6 @@ class ServerList extends React.Component {
           </li>
         </ul>
         <button onClick={this.props.logoutUser}>Logout</button>
-
       </div>
     )
   }

@@ -5,6 +5,7 @@ import LogInFormContainer from './components/session/login_form_container';
 import SignUpFormContainer from './components/session/signup_form_container';
 import HomePage from './components/home/home_page';
 import ServerShow from './components/home/server_show';
+import MessagesShow from './components/messages/messages_show';
 import Modal from './components/modal';
 import './css/App.css';
 
@@ -21,7 +22,8 @@ class App extends Component {
         <AuthRoute exact path="/signup" component={SignUpFormContainer} />
         <div className="home">
           <ProtectedRoute path="/" component={HomePage} />
-          <ProtectedRoute exact path="/servers/:serverId" component={ServerShow} />
+          <ProtectedRoute path="/servers/:serverId" component={ServerShow} />
+          <ProtectedRoute exact path="/servers/:serverId/:channelId" component={MessagesShow} />
           {/* <ProtectedRoute component={ChatBox}/> */}
         </div>
       </>;

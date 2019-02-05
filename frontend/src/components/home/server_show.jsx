@@ -31,16 +31,29 @@ class ServerShow extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.fetchServer(this.props.serverId);
     if (this.props.server) {
-      this.props.fetchChannels(this.props.server._id);
+      this.props.fetchChannels(this.props.server._id)
+        .then(channels => {
+          if (channels.payload.data.length > 0) {
+            this.props.history.push(`${channels.payload.data[0]._id}`);
+          } else {
+            return null;
+          }
+        });
     };
   };
 
   componentDidUpdate(oldProps) {
     if (oldProps.server) {
       if (oldProps.server._id !== this.props.server._id) {
-        this.props.fetchChannels(this.props.server._id);
+        this.props.fetchChannels(this.props.server._id)
+          .then(channels => {
+            if (channels.payload.data.length > 0) {
+              this.props.history.push(`${channels.payload.data[0]._id}`);
+            } else {
+              return null;
+            }
+          });
       };
     };
   };

@@ -7,7 +7,11 @@ const MessageSchema = new Schema({
     ref: "User",
     required: true
   },
-  on: {
+  body: {
+    type: String,
+    required: true
+  },
+  modelId: {
     type: Schema.Types.ObjectId,
     required: true,
     refPath: "onModel"
