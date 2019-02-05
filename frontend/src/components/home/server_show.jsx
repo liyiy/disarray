@@ -35,7 +35,7 @@ class ServerShow extends React.Component {
       this.props.fetchChannels(this.props.server._id)
         .then(channels => {
           if (channels.payload.data.length > 0) {
-            this.props.history.push(`${channels.payload.data[0]._id}`);
+            this.props.history.push(`${this.props.server._id}/${channels.payload.data[0]._id}`);
           } else {
             return null;
           }
@@ -44,12 +44,12 @@ class ServerShow extends React.Component {
   };
 
   componentDidUpdate(oldProps) {
-    if (oldProps.server) {
+    if (oldProps.server && this.props.server) {
       if (oldProps.server._id !== this.props.server._id) {
         this.props.fetchChannels(this.props.server._id)
           .then(channels => {
             if (channels.payload.data.length > 0) {
-              this.props.history.push(`${channels.payload.data[0]._id}`);
+              this.props.history.push(`${this.props.server._id}/${channels.payload.data[0]._id}`);
             } else {
               return null;
             }
