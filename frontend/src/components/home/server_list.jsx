@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { deleteServer } from '../../actions/server_actions';
 import { logoutUser } from '../../util/session_api_util';
 import { openModal } from '../../actions/modal_actions';
@@ -39,6 +39,7 @@ class ServerList extends React.Component {
     }
     return (
       <div className="servers-container">
+      <div><Link to="/channels/@me">friends!!</Link></div>
         <ul className="servers-list">
           {list}
           <li>
