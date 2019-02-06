@@ -9,13 +9,21 @@ class FriendsShow extends React.Component {
   render() {
     return (
       <>
-      <div>
-      Hi!!!
-      </div>
+        <div>
+          <div>
+            pooop
+          </div>
+          <div>
+          THIS IS FRIENDS SHOW :DD
+          </div>
+          <div>
+            me
+          </div>
+        </div>
       </>
     )
   }
-  
+
 };
 
 export default FriendsShow;

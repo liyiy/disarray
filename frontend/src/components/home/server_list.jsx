@@ -39,7 +39,9 @@ class ServerList extends React.Component {
     }
     return (
       <div className="servers-container">
-      <div><Link to="/channels/@me">friends!!</Link></div>
+        <div className="server-name">
+          <Link to="/channels/@me">frans</Link>
+        </div>
         <ul className="servers-list">
           {list}
           <li>
