@@ -22,21 +22,21 @@ const mdp = dispatch => {
 class ServerList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {servers: this.props.servers};
+    this.state = { servers: this.props.servers };
   }
 
   render(){
-
     let list;
     if (this.props.servers) {
       list = this.props.servers.map((server, idx) => {
         return (
           <ServerListItem key={idx} server={server} idx={idx}/>
-        )
-      })
+        );
+      });
     } else {
       list = null;
-    }
+    };
+
     return (
       <div className="servers-container">
         <ul className="servers-list">
@@ -47,8 +47,8 @@ class ServerList extends React.Component {
         </ul>
         <button onClick={this.props.logoutUser}>Logout</button>
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 export default withRouter(connect(msp, mdp)(ServerList));
