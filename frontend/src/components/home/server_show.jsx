@@ -9,11 +9,16 @@ const msp = (state, ownProps) => {
   if (state.entities.channels) {
     channels = Object.values(state.entities.channels);
   } 
+  // if (state.entities.servers[ownProps.match.params.serverId].users) {
+  //   serverUsers = state.entities.servers[ow]
+  // }
+  // debugger 
   return {
     server: state.entities.servers[ownProps.match.params.serverId],
     serverId: ownProps.match.params.serverId,
     user: state.session.username,
-    channels: channels
+    channels: channels,
+    // serverUsers: state.entities.servers[ownProps.match.params.serverId].users
   };
 };
 

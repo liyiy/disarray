@@ -49,9 +49,9 @@ class ServerListItem extends React.Component {
             {server.name[0]}
         </div>
         <div className="server-name-hover"
-             ref={elem => this.serverName = elem}
-             hidden>
-             {server.name}
+            ref={elem => this.serverName = elem}
+            hidden>
+            {server.name}
         </div>
         <button className="server-delete" onClick={(e) => this.deleteServer(e, server._id)}>Delete server</button>
       </li>

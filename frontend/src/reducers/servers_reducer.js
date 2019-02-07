@@ -8,7 +8,7 @@ const serversReducer = (state = {}, action) => {
   switch(action.type) {
     case RECEIVE_SERVERS:
       const servers = {};
-      action.payload.data.forEach(server => {
+      action.payload.data.servers.forEach(server => {
           servers[server._id] = server;
       });
       return merge({}, newState, servers);

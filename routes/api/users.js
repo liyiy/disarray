@@ -104,21 +104,13 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
     id: req.user.id,
     username: req.user.username,
     email: req.user.email,
-    friends: req.user.friends
+    friends: req.user.friends,
+    servers: req.user.servers
   });
 });
 
 router.patch('/friends', passport.authenticate('jwt', {session: false}), (req, res) => {
-  const friend = req.body.friend;
-  const user = User.findById(req.user.id);
-  // BlogPost.findById(myId, function (err, post) {
-  //   if (!err) {
-  //     post.comments[0].remove();
-  //     post.save(function (err) {
-  //       // do something
-  //     });
-  //   }
-  // });
+  
   if (req.body.add) {
     User.findById(req.user.id, function (err, user) {
       if (!err) {

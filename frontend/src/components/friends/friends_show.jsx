@@ -1,4 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+const msp = (state) => {
+  return {
+
+  };
+};
+
+const mdp = dispatch => {
+  return {
+
+  };
+};
 
 class FriendsShow extends React.Component {
 
@@ -26,4 +39,4 @@ class FriendsShow extends React.Component {
 
 };
 
-export default FriendsShow;
+export default connect(msp, mdp)(FriendsShow);

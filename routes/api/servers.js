@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 
 const Server = require('../../models/Server');
+const User = require('../../models/User');
 const Channel = require('../../models/Channel');
 // const validateServerCreation = require("../../validation/server");
 
@@ -19,14 +20,21 @@ router.post('/', passport.authenticate('jwt', { session: false }),
     const newServer = new Server({
       name: req.body.name,
       owner: req.user.id,
-      users: req.user.id,
     });
+
+    newServer.users.push({ _id: req.user.id, username: req.user.username });
 
     const defaultChannel = new Channel({
       name: "general",
       server: newServer.id
     });
 
+    User.findById(req.user.id, function (err, user) {
+      if (!err) {
+        user.servers.push({ _id: newServer._id, name: req.body.name });
+        user.save();
+      }
+    });
     // newServer.channels.push(defaultChannel.id);
 
     defaultChannel.save();
@@ -43,8 +51,13 @@ router.get('/', passport.authenticate('jwt', { session: false }),
     //   return res.status(400).json(errors);
     // }
 
-    Server.find({ users: req.user.id })
-      .then(servers => res.json(servers));
+    // Server.find({ users: req.user.id })
+    //   .then(servers => res.json(servers));
+
+    res.json({
+      servers: req.user.servers
+    });
+
 });
 
 router.get('/:server_id', (req, res) => {
@@ -56,6 +69,23 @@ router.get('/:server_id', (req, res) => {
 // router.patch('/:server_id', (req, res) => {
 //   Server.find({ id: req.params.server_id })
 // })
+
+router.patch('/join', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+  // BlogPost.findById(myId, function (err, post) {
+  //   if (!err) {
+  //     post.comments[0].remove();
+  //     post.save(function (err) {
+  //       // do something
+  //     });
+  //   }
+  // });
+  Server.findById(req.body.id, function(err, server) {
+    if (!err) {
+      server.users.push({})
+    }
+  });
+})
 
 router.delete('/:server_id', (req, res) => {
   Server.remove({ _id: req.params.server_id })
