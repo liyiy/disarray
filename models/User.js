@@ -2,10 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Friends = new Schema({
+  _id: String,
   username  : String,
   accepted  : Boolean,
+  type   : String,
   date  : Date
-});
+}, { _id: false });
 
 const UserSchema = new Schema({
   username: {
