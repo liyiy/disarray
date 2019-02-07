@@ -26,12 +26,14 @@ class ServerUsersShow extends React.Component {
   }
 
   componentDidMount() {
+    debugger 
     this.props.fetchServer(this.props.serverId);
   }
 
   render() {
     let names;
     if (this.props.serverUsers) {
+      debugger 
       names = this.props.serverUsers.map(user => {
         return (
           <li>{user.username}</li>

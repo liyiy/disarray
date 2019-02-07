@@ -80,12 +80,22 @@ router.patch('/join', passport.authenticate('jwt', { session: false }), (req, re
   //     });
   //   }
   // });
-  Server.findById(req.body.id, function(err, server) {
+  // Server.findById(req.body.id, function(err, server) {
+  //   if (!err) {
+  //     server.users.push({ _id: req.user.id, username: req.user.name});
+  //   }
+  // });
+  User.findById(req.user.id, function(err, user) {
     if (!err) {
-      server.users.push({})
+      user.servers.push({ _id: req.body.id, name: req.body.name});
+      user.save();
     }
   });
-})
+
+  res.json({
+    res: "Ok it worked"
+  });
+});
 
 router.delete('/:server_id', (req, res) => {
   Server.remove({ _id: req.params.server_id })
