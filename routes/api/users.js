@@ -142,5 +142,17 @@ router.get('/friends', passport.authenticate('jwt', {session: false}), (req, res
   });
 });
 
+router.get('/', function (req, res) {
+  User.find({}, function (err, users) {
+    var userMap = {};
+
+    users.forEach(function (user) {
+      userMap[user._id] = {id: user._id, email: user.email, username: user.username}
+    });
+
+    res.send(userMap);
+  });
+});
+
 module.exports = router;
 

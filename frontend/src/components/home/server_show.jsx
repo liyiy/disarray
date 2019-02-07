@@ -49,7 +49,7 @@ class ServerShow extends React.Component {
   };
 
   componentDidUpdate(oldProps) {
-    if (oldProps.server && this.props.server) {
+    if (oldProps.server) {
       if (oldProps.server._id !== this.props.server._id) {
         this.props.fetchChannels(this.props.server._id)
           .then(channels => {
