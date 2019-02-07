@@ -51,9 +51,6 @@ router.get('/', passport.authenticate('jwt', { session: false }),
     //   return res.status(400).json(errors);
     // }
 
-    // Server.find({ users: req.user.id })
-    //   .then(servers => res.json(servers));
-
     res.json({
       servers: req.user.servers
     });
@@ -72,19 +69,12 @@ router.get('/:server_id', (req, res) => {
 
 router.patch('/join', passport.authenticate('jwt', { session: false }), (req, res) => {
 
-  // BlogPost.findById(myId, function (err, post) {
-  //   if (!err) {
-  //     post.comments[0].remove();
-  //     post.save(function (err) {
-  //       // do something
-  //     });
-  //   }
-  // });
-  // Server.findById(req.body.id, function(err, server) {
-  //   if (!err) {
-  //     server.users.push({ _id: req.user.id, username: req.user.name});
-  //   }
-  // });
+  Server.findById(req.body.id, function(err, server) {
+    if (!err) {
+      server.users.push({ _id: req.user.id, username: req.user.username});
+      server.save();
+    }
+  });
   User.findById(req.user.id, function(err, user) {
     if (!err) {
       user.servers.push({ _id: req.body.id, name: req.body.name});
@@ -93,7 +83,8 @@ router.patch('/join', passport.authenticate('jwt', { session: false }), (req, re
   });
 
   res.json({
-    res: "Ok it worked"
+    user: req.user.username,
+    server: req.body.name
   });
 });
 
