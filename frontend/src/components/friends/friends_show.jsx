@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../../actions/user_actions';
-import { fetchFriends, sendFriendRequest } from '../../actions/friend_actions';
+import { fetchFriends, sendFriendRequest, acceptFriendRequest } from '../../actions/friend_actions';
 
 
 const msp = (state) => {
@@ -19,7 +19,8 @@ const mdp = dispatch => {
   return {
     fetchUsers: () => dispatch(fetchUsers()),
     fetchFriends: () => dispatch(fetchFriends()),
-    sendFriendRequest: data => dispatch(sendFriendRequest(data))
+    sendFriendRequest: data => dispatch(sendFriendRequest(data)),
+    acceptFriendRequest: data => dispatch(acceptFriendRequest(data))
   };
 };
 
@@ -29,6 +30,7 @@ class FriendsShow extends React.Component {
     super(props);
     this.state = {id: "", username: "", accepted: false, add: true, type: "Incoming"};
     this.sendFriendRequest = this.sendFriendRequest.bind(this);
+    this.acceptFriendRequest = this.acceptFriendRequest.bind(this);
   }
   
 
@@ -41,6 +43,14 @@ class FriendsShow extends React.Component {
     e.stopPropagation();
     this.setState({id: friend.id, username: friend.username, accepted: false, add: true, type: "Incomng"}, () => 
     this.props.sendFriendRequest(this.state));
+  }
+
+  acceptFriendRequest(e, friend) {
+    e.stopPropagation();
+    debugger 
+    this.setState({id: friend.id, username: friend.username, add: true, accepted: true }, () => 
+    this.props.acceptFriendRequest(this.state)
+    );
   }
 
   render() {
@@ -57,8 +67,12 @@ class FriendsShow extends React.Component {
       })
     }
     let friends = this.props.friends.map((friend, idx) => {
+      let pending;
+        if (friend.accepted === false) {
+          pending = <button onClick={(e) => this.acceptFriendRequest(e, {id: friend._id, username: friend.username})}>accept</button>
+        } 
       return (
-        <li key={idx}>{friend.username}</li>
+        <li key={idx}>{friend.username}{pending}</li>
       )
     })
     return (

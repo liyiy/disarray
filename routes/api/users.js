@@ -113,10 +113,9 @@ router.patch('/friends', passport.authenticate('jwt', {session: false}), (req, r
   
   if (req.body.add) {
     if (req.body.accepted == false) {
-      console.log(req.body.accepted);
       User.findById(req.user.id, function (err, user) {
         if (!err) {
-          user.friends.push({ _id: req.body.id, username: req.body.username, accepted: req.body.accepted, type: "Outgoing"});
+          user.friends.push({ _id: req.body.id, username: req.body.username, accepted: false, type: "Outgoing"});
           user.save();
         }
       });
@@ -131,8 +130,14 @@ router.patch('/friends', passport.authenticate('jwt', {session: false}), (req, r
       User.findById(req.user.id, function(err, user) {
         if (!err) {
           user.friends.id(req.body.id).remove();
-          user.friends.push({ _id: req.body.id, username: req.body.username, accepted: true, type: req.body.type });
+          user.friends.push({ _id: req.body.id, username: req.body.username, accepted: true, type: "Incoming" });
           user.save();
+        }
+      });
+      User.findById(req.body.id, function(err, user) {
+        if (!err) {
+          user.friends.id(req.user.id).remove();
+          user.friends.push({ _id: req.user.id, username: req.body.username, accepted: true, type: "Outgoing"});
         }
       });
     }

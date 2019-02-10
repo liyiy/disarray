@@ -51,7 +51,6 @@ export const receiveFriendRequest = (friendData) => dispatch => {
 };
 
 export const sendFriendRequest = (friendData) => dispatch => {
-  debugger 
   return FriendApiUtil.sendFriendRequest(friendData)
     .then(response => dispatch(receiveFriend(response)));
 };

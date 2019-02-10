@@ -2,9 +2,9 @@ import axios from 'axios';
 
 export const fetchFriends = () => {
   return axios.get('api/users/friends');
-}
+};
+
 export const sendFriendRequest = data => {
-  debugger 
   return axios.patch('api/users/friends', data);
 };
 
@@ -13,6 +13,7 @@ export const receiveFriendRequest = data => {
 };
 
 export const acceptFriendRequest = data => {
+  debugger 
   return axios.patch('api/users/friends', data);
 };
 

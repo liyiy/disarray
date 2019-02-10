@@ -14,7 +14,6 @@ const friendsReducer = (state={}, action) => {
     case RECEIVE_FRIEND:
       return merge({}, newState, action.payload.data);
     case REMOVE_FRIEND:
-      debugger 
       delete newState[action.payload.data.id];
       return newState;
     default:
