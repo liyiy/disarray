@@ -13,7 +13,6 @@ export const receiveFriendRequest = data => {
 };
 
 export const acceptFriendRequest = data => {
-  debugger 
   return axios.patch('api/users/friends', data);
 };
 
