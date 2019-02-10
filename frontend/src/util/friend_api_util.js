@@ -4,6 +4,7 @@ export const fetchFriends = () => {
   return axios.get('api/users/friends');
 }
 export const sendFriendRequest = data => {
+  debugger 
   return axios.patch('api/users/friends', data);
 };
 

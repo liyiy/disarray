@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
 
   newChannel.save()
     .then(channel => res.json(channel))
-    .catch(err => res.json(err))
+    .catch(err => res.json(err));
 });
 
 router.get('/server/:server_id', (req, res) => {

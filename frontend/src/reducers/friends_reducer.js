@@ -6,7 +6,17 @@ const friendsReducer = (state={}, action) => {
   let newState = merge({}, state);
   switch(action.type) {
     case RECEIVE_FRIENDS:
-      return merge({}, newState, action.payload.data.friends);
+      const friends = {};
+      action.payload.data.friends.forEach(friend => {
+        friends[friend._id] = friend;
+      });
+      return merge({}, newState, friends);
+    case RECEIVE_FRIEND:
+      return merge({}, newState, action.payload.data);
+    case REMOVE_FRIEND:
+      debugger 
+      delete newState[action.payload.data.id];
+      return newState;
     default:
       return newState;
   }

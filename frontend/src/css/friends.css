@@ -1,3 +1,17 @@
+.direct-messages-container {
+  color: #fff;
+  cursor: default;
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 12px;
+  opacity: .3;
+  overflow: hidden;
+  padding: 9px 20px;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+}
+
 .friends-show-container {
   display: flex;
   flex-direction: column;

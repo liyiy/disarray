@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../../actions/user_actions';
-import { fetchFriends } from '../../actions/friend_actions';
+import { fetchFriends, sendFriendRequest } from '../../actions/friend_actions';
+
+
 const msp = (state) => {
   let users;
   if (state.entities.users) {
@@ -16,7 +18,8 @@ const msp = (state) => {
 const mdp = dispatch => {
   return {
     fetchUsers: () => dispatch(fetchUsers()),
-    fetchFriends: () => dispatch(fetchFriends())
+    fetchFriends: () => dispatch(fetchFriends()),
+    sendFriendRequest: data => dispatch(sendFriendRequest(data))
   };
 };
 
@@ -24,11 +27,20 @@ class FriendsShow extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {id: "", username: "", accepted: false, add: true, type: "Incoming"};
+    this.sendFriendRequest = this.sendFriendRequest.bind(this);
   }
+  
 
   componentDidMount() {
     this.props.fetchUsers();
     this.props.fetchFriends();
+  }
+
+  sendFriendRequest(e, friend) {
+    e.stopPropagation();
+    this.setState({id: friend.id, username: friend.username, accepted: false, add: true, type: "Incomng"}, () => 
+    this.props.sendFriendRequest(this.state));
   }
 
   render() {
@@ -36,8 +48,10 @@ class FriendsShow extends React.Component {
     if (this.props.users) {
       users2 = this.props.users.map(user => {
         return (
+
           <li>
             email: {user.email}, username: {user.username}
+            <button onClick={(e) => this.sendFriendRequest(e, {id: user.id, username: user.username})}>send request</button>
           </li>
         )
       })

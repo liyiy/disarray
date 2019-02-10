@@ -112,12 +112,30 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
 router.patch('/friends', passport.authenticate('jwt', {session: false}), (req, res) => {
   
   if (req.body.add) {
-    User.findById(req.user.id, function (err, user) {
-      if (!err) {
-        user.friends.push({ _id: req.body.id, username: req.body.username, accepted: req.body.accepted, type: req.body.type });
-        user.save();
-      }
-    });
+    if (req.body.accepted == false) {
+      console.log(req.body.accepted);
+      User.findById(req.user.id, function (err, user) {
+        if (!err) {
+          user.friends.push({ _id: req.body.id, username: req.body.username, accepted: req.body.accepted, type: "Outgoing"});
+          user.save();
+        }
+      });
+      User.findById(req.body.id, function(err, user) {
+        if (!err) {
+          user.friends.push({ _id: req.user.id, username: req.user.username, accepted: false, type: "Incoming" });
+          user.save();
+        }
+      });
+    }
+    else {
+      User.findById(req.user.id, function(err, user) {
+        if (!err) {
+          user.friends.id(req.body.id).remove();
+          user.friends.push({ _id: req.body.id, username: req.body.username, accepted: true, type: req.body.type });
+          user.save();
+        }
+      });
+    }
   } else {
     User.findById(req.user.id, function(err, user) {
       if (!err) {

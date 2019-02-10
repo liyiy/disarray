@@ -38,11 +38,11 @@ class FriendListShow extends React.Component {
             find or start a conversation
           </div>
           <div className="direct-messages-container">
-            Direct Messages/Friends
+            Direct Messages
+          </div>
           <ul>
             {friends}
           </ul>
-          </div>
           <div className="server-show-user">
             me
           </div>
