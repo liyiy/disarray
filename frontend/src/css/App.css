@@ -2,6 +2,7 @@
 @import url("new_server.css");
 @import url("server_show.css");
 @import url("server_list.css");
+@import url("friends.css");
 
 
 html, body {
@@ -10,7 +11,9 @@ html, body {
 }
 
 #root {
+  display: flex;
   height: 100%;
+  width: 100%;
 }
 
 .login-form-container {
@@ -105,6 +108,7 @@ html, body {
 }
 
 .home {
-  display: inline-flex;
+  display: flex;
   height: 100%;
+  width: 100%
 }

@@ -4,7 +4,7 @@
   /* border: 2px solid green; */
   color: #f8f8f8;
   background-color: #282b30;
-  width: 240px;
+  min-width: 240px;
   height: 100%;
 }
 

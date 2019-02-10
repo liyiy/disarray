@@ -5,7 +5,7 @@ export const RECEIVE_FRIEND_REQUEST = 'RECEIVE_FRIEND_REQUEST';
 export const ACCEPT_FRIEND_REQUEST = 'ACCEPT_FRIEND_REQUEST';
 export const REMOVE_FRIEND = 'REMOVE_FRIEND';
 
-export const receiveFriends = payload => {
+export const receiveFriends = payload => { 
   return {
     type: RECEIVE_FRIENDS,
     payload
@@ -14,7 +14,7 @@ export const receiveFriends = payload => {
 
 export const receiveFriend = payload => {
   return {
-    type: RECEIVE_FRIENDS,
+    type: RECEIVE_FRIEND,
     payload
   };
 };
@@ -45,22 +45,22 @@ export const fetchFriends = () => dispatch => {
     .then(response => dispatch(receiveFriends(response)));
 };
 
-export const receiveFriendRequest = (friendData) => {
+export const receiveFriendRequest = (friendData) => dispatch => {
   return FriendApiUtil.receiveFriendRequest(friendData)
     .then(response => dispatch(receiveFriend(response)));
 };
 
-export const sendFriendRequest = (friendData) => {
+export const sendFriendRequest = (friendData) => dispatch => {
   return FriendApiUtil.sendFriendRequest(friendData)
     .then(response => dispatch(receiveFriend(response)));
 };
 
-export const acceptFriendRequest = (data) => {
+export const acceptFriendRequest = (data) => dispatch => {
   return FriendApiUtil.acceptFriendRequest(data)
     .then(response => dispatch(receiveFriend(response)));
 };
 
-export const deleteFriend = (data) => {
+export const deleteFriend = (data) => dispatch => {
   return FriendApiUtil.deleteFriend(data)
     .then(response => dispatch(removeFriend(response)));
 };

@@ -21,9 +21,9 @@ class App extends Component {
   render() {
     return <>
         <Modal />
+        <div className="home">
         <AuthRoute exact path="/login" component={LogInFormContainer} />
         <AuthRoute exact path="/signup" component={SignUpFormContainer} />
-        <div className="home">
           <ProtectedRoute path="/" component={HomePage} />
           <ProtectedRoute path="/servers/:serverId" component={ServerShow} />
           <ProtectedRoute path="/servers/:serverId/:channelId" component={MessagesShow} />

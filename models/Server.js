@@ -6,6 +6,11 @@ const User = new Schema({
   username: String
 }, { _id: false });
 
+const Channel = new Schema({
+  _id: String,
+  name: String
+}, { _id: false });
+
 const ServerSchema = new Schema({
   name: {
     type: String,
@@ -17,13 +22,7 @@ const ServerSchema = new Schema({
     required: true
   },
   users: [User],
-  // channels: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'Channel'
-  // },
-  // channels: {
-  //   type: Array,
-  // },
+  channels: [Channel],
   date: {
     type: Date,
     default: Date.now()

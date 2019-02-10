@@ -29,13 +29,14 @@ router.post('/', passport.authenticate('jwt', { session: false }),
       server: newServer.id
     });
 
+    newServer.channels.push({ _id: defaultChannel.id, name: "general"});
+
     User.findById(req.user.id, function (err, user) {
       if (!err) {
         user.servers.push({ _id: newServer._id, name: req.body.name });
         user.save();
       }
     });
-    // newServer.channels.push(defaultChannel.id);
 
     defaultChannel.save();
     

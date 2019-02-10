@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const fetchFriends = () => {
-  return axios.get('api/users/friend');
+  return axios.get('api/users/friends');
 }
 export const sendFriendRequest = data => {
   return axios.patch('api/users/friends', data);
