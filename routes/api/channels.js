@@ -10,14 +10,6 @@ router.post('/', (req, res) => {
     server: req.body.server_id
   });
 
-
-  // User.findById(req.user.id, function (err, user) {
-  //   if (!err) {
-  //     user.servers.push({ _id: newServer._id, name: req.body.name });
-  //     user.save();
-  //   }
-  // });
-
   Server.findById(req.body.server_id, function(err, server) {
     if (!err) {
       server.channels.push({ _id: newChannel.id, name: req.body.name});

@@ -99,3 +99,29 @@
     letter-spacing: .025em;
     text-transform: uppercase;
 }
+
+.friends-logo-container {
+  margin-right: 10px;
+} 
+
+
+.friends-logo-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: #2f3136;
+}
+
+.friends-logo-div:hover {
+  cursor: pointer;
+  background-color: pink;
+  
+}
+
+.friends-logo {
+  height: 33px;
+  width: 33px;
+}

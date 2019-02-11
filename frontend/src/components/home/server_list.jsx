@@ -25,6 +25,7 @@ class ServerList extends React.Component {
     this.state = {servers: this.props.servers};
   }
 
+  // <Link to="/channels/@me">F</Link>
   render(){
 
     let list;
@@ -39,9 +40,15 @@ class ServerList extends React.Component {
     }
     return (
       <div className="servers-container">
-        <div className="server-name">
-          <Link to="/channels/@me">frans</Link>
-        </div>
+        <div className="friends-logo-container">
+        <div className="friends-logo-div">
+          <img 
+              className="friends-logo"
+              src={require("./discord-logo-white.png")}
+              onClick={() => this.props.history.push("/channels/@me")}>
+          </img>
+        </div>  
+      </div>
         <ul className="servers-list">
           {list}
           <li>

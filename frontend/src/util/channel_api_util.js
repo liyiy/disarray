@@ -13,6 +13,5 @@ export const fetchChannels = (serverId)=> {
 };
 
 export const deleteChannel = data => {
-  debugger 
   return axios.delete(`api/channels/${data._id}`, { data: data });
 };

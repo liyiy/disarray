@@ -60,6 +60,18 @@ class FriendsShow extends React.Component {
     this.props.deleteFriend(this.state));
   }
 
+  // sortFriends(friends) {
+  //   friends.map(friend, idx => {
+  //     if (friend.type === "Outgoing") {
+  //       return ( 
+  //         <li>
+  //           <
+  //         </li>
+  //       )
+  //     }
+  //   }
+  // }
+
   render() {
     let users2;
     if (this.props.users) {
@@ -74,13 +86,13 @@ class FriendsShow extends React.Component {
       })
     }
     let friends = this.props.friends.map((friend, idx) => {
-      let pending;
-      if (friend.accepted === false) {
+      let pending = "pending";
+      if (friend.type === "Incoming") {
         pending = <button onClick={(e) => this.acceptFriendRequest(e, {id: friend._id, username: friend.username})}>accept</button>
       } 
       return (
         <li key={idx}>
-        {friend.username}{pending}
+        {friend.username} {pending}
         <button onClick={(e) => this.deleteFriend(e, {id: friend._id })}>delete</button>
         </li>
       )

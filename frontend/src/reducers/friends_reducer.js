@@ -12,7 +12,7 @@ const friendsReducer = (state={}, action) => {
       });
       return merge({}, newState, friends);
     case RECEIVE_FRIEND:
-      return merge({}, newState, action.payload.data);
+      return merge({}, newState, {[action.payload.data.id]: action.payload.data});
     case REMOVE_FRIEND:
       delete newState[action.payload.data.id];
       return newState;

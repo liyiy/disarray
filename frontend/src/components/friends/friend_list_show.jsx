@@ -4,7 +4,8 @@ import { fetchFriends } from '../../actions/friend_actions';
 
 const msp = state => {
   return {
-    friends: Object.values(state.entities.friends)
+    friends: Object.values(state.entities.friends),
+    user: Object.values(state.session.username)
   };
 };
 
@@ -37,6 +38,9 @@ class FriendListShow extends React.Component {
           <div className="server-show-header">
             find or start a conversation
           </div>
+          <div>
+            Friends
+          </div>
           <div className="direct-messages-container">
             Direct Messages
           </div>
@@ -44,7 +48,7 @@ class FriendListShow extends React.Component {
             {friends}
           </ul>
           <div className="server-show-user">
-            me
+            {this.props.user}
           </div>
         </div>
       </>
