@@ -3,6 +3,7 @@ import { fetchServer } from '../../actions/server_actions';
 import { fetchChannels } from '../../actions/channel_actions';
 import { connect } from 'react-redux';
 import ChannelList from '../channels/channel_list';
+import { Redirect } from 'react-router-dom';
 
 const msp = (state, ownProps) => {
   let channels;
