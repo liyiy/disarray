@@ -31,9 +31,9 @@ class ServerUsersShow extends React.Component {
   render() {
     let names;
     if (this.props.serverUsers) {
-      names = this.props.serverUsers.map(user => {
+      names = this.props.serverUsers.map((user, idx) => {
         return (
-          <li>{user.username}</li>
+          <li key={idx}>{user.username}</li>
         )
       });
     };

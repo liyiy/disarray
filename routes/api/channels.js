@@ -46,8 +46,8 @@ router.get('/:channel_id', (req, res) => {
 
 router.delete('/:channel_id', (req, res) => {
 
-  Server.find({ "channels._id": req.params.channel_id}, function(err, server) {
-    if (!err) {
+  Server.findById(req.body.server, function(err, server) {
+    if(!err) {
       server.channels.id(req.params.channel_id).remove();
       server.save();
     }
