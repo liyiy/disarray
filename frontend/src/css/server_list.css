@@ -6,6 +6,7 @@
   align-items: center;
   flex: 1;
   user-select: none;
+  position: relative;
 }
 
 .server-delete {
@@ -41,7 +42,6 @@
 .servers-list {
   flex: 1 1 auto;
   height: 100%;
-  position: relative;
   width: 98px;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -75,7 +75,7 @@
 .server-icon-active {
   color: white;
   background: rgb(114, 137, 218);
-  border-radius: 30%;
+  border-radius: 35%;
   text-align: center;
   font-size: 18px;
   width: 60px;
@@ -100,7 +100,7 @@
 }
 
 .server-icon:hover {
-  animation-duration: .3s;
+  animation-duration: .5s;
   animation-name: bubble-out;
   background: rgb(114, 137, 218);
   cursor: pointer;
@@ -108,10 +108,17 @@
 
 @keyframes bubble-out {
   0% {border-radius: 50%;}
-  70% {border-radius: 22%;}
-  100% {border-radius: 30%;}
+  40% {border-radius: 30%;}
+  70% {border-radius: 40%;}
+  100% {border-radius: 35%;}
 }
 
 .server-name-hover {
   color: white;
+  position: absolute;
+  right: -50%;
+}
+
+.server-name {
+  text-align: left;
 }
