@@ -21,42 +21,49 @@ class ServerListItem extends React.Component {
     this.showServerName = this.showServerName.bind(this);
     this.hideServerName = this.hideServerName.bind(this);
     this.deleteServer = this.deleteServer.bind(this);
+    this.handleServerClick = this.handleServerClick.bind(this);
   }
 
   showServerName() {
     this.serverName.hidden = false;
-  }
+  };
+
+  handleServerClick() {
+    this.serverIcon.className = "server-icon-active";
+    this.props.history.push(`/servers/${this.props.server._id}`);
+  };
 
   hideServerName() {
     this.serverName.hidden = true;
-  }
+  };
 
   deleteServer(e, serverId) {
     e.stopPropagation();
     this.props.deleteServer(serverId);
-  }
+  };
 
   render() {
-    const { idx, server } = this.props;
+    const { idx, server, active } = this.props;
 
     return (
-      <li key={idx}>
+      <li key={idx} className="server-name-container">
         <div
-            className="server-name"
-            onClick={() => this.props.history.push(`/servers/${server._id}`)}
+            className={active === "active" ? "server-icon-active" : "server-icon"}
+            ref={elem => this.serverIcon = elem}
+            onClick={this.handleServerClick}
             onPointerOver={this.showServerName}
             onPointerLeave={this.hideServerName}>
             {server.name[0]}
         </div>
         <div className="server-name-hover"
-            ref={elem => this.serverName = elem}
-            hidden>
-            {server.name}
+          ref={elem => this.serverName = elem}
+          hidden>
+          <span className="server-name">{server.name}</span>
         </div>
         <button className="server-delete" onClick={(e) => this.deleteServer(e, server._id)}>Delete server</button>
       </li>
-    )
-  }
-}
+    );
+  };
+};
 
 export default withRouter(connect(msp, mdp)(ServerListItem));
