@@ -4,6 +4,7 @@
 @import url("server_list.css");
 @import url("friends.css");
 @import url("messages.css");
+@import url("users.css");
 
 
 html, body {
@@ -111,5 +112,6 @@ html, body {
 .home {
   display: flex;
   height: 100%;
-  width: 100%
+  width: 100%;
+  overflow: hidden;
 }

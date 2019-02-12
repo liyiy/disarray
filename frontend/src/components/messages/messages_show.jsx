@@ -20,30 +20,46 @@ const mdp = dispatch => {
 
 class MessagesShow extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.socket = io("localhost:3000");
-    this.state = { message: '', chatHistory: [] }
+    this.state = { message: "", chatHistory: [] };
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    if (this.state.message === '') {
-      return null
+    if (this.state.message === "") {
+      return null;
     } else {
-      this.socket.emit('chat message', this.state.message);
+      this.socket.emit("chat message", this.state.message);
       const history = this.state.chatHistory.concat(this.state.message);
-      this.socket.on('chat message', message => {
+      this.socket.on("chat message", message => {
         this.setState({ chatHistory: history });
       });
-      this.setState({ message: '' });
+      this.setState({ message: "" });
     }
-  };
+  }
 
   update(field) {
-    return (e) => {
+    return e => {
       this.setState({ [field]: e.target.value });
     };
+  }
+
+  scrollToBottom = () => {
+    if (this.messagesEnd) {
+      this.messagesEnd.scrollIntoView({ behavior: "auto" });
+    } else {
+      return null;
+    }
   };
 
   render() {
@@ -52,15 +68,18 @@ class MessagesShow extends React.Component {
       list = this.state.chatHistory.map((message, idx) => {
         return (
           <li key={idx} className="chat-message">
-            <main className="message-sender">User: {this.props.currentUser.username}</main>
+            <main className="message-sender">
+              User: {this.props.currentUser.username}
+            </main>
             Message: {message}
           </li>
-        )
-      })
-    } 
+        );
+      });
+    }
 
     if (this.props.channel) {
-      return <div className="messages-container">
+      return (
+        <div className="messages-container">
           {this.props.channel.name}
           <br />
           {this.props.channel._id}
@@ -69,16 +88,25 @@ class MessagesShow extends React.Component {
             {list}
           </ul>
 
+          {this.state.message.length > 0 ? (
+            <span>{this.props.currentUser.username} is typing...</span>
+          ) : null}
+
           <form onSubmit={this.handleSubmit}>
-            <input type="text" id="chat-message-input" onChange={this.update("message")} value={this.state.message} />
+            <input
+              type="text"
+              id="chat-message-input"
+              onChange={this.update("message")}
+              value={this.state.message}
+            />
             <input type="submit" />
           </form>
-
-          {this.state.message.length > 0 ? 
-            <span>{this.props.currentUser.username} is typing...</span> :
-            null
-          }
-        </div>;
+          <div
+            style={{ float: "left", clear: "both" }}
+            ref={el => {this.messagesEnd = el}}
+          />
+        </div>
+      );
     } else {
       return null;
     }

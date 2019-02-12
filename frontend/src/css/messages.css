@@ -2,6 +2,7 @@
   background-color: #36393f;
   color: white;
   overflow: scroll;
+  width: 100%;
 }
 
 .chat-message {
