@@ -36,12 +36,8 @@ const server = app.listen(port, () => console.log(`Server is running on port ${p
 
 const io = require('socket.io').listen(server);
 
-
 io.on('connection', socket => {
-  console.log('a user connected');
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
+  socket.on('chat message', message => {
+    io.emit('chat message', message);
   });
 });
-
-io.set('transports', ['websocket', 'flashsocket', 'polling']);

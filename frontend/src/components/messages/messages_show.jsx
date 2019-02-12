@@ -6,7 +6,8 @@ import io from 'socket.io-client'
 
 const msp = (state, ownProps) => {
   return {
-    channel: state.entities.channels[ownProps.match.params.channelId]
+    channel: state.entities.channels[ownProps.match.params.channelId],
+    currentUser: state.session
   }
 }
 
@@ -20,18 +21,64 @@ const mdp = dispatch => {
 class MessagesShow extends React.Component {
   constructor(props) {
     super(props)
-    this.socket = io({transports: ['websocket', 'flashsocket', 'polling']});
+    this.socket = io("localhost:3000");
+    this.state = { message: '', chatHistory: [] }
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    if (this.state.message === '') {
+      return null
+    } else {
+      this.socket.emit('chat message', this.state.message);
+      const history = this.state.chatHistory.concat(this.state.message);
+      this.socket.on('chat message', message => {
+        this.setState({ chatHistory: history });
+      });
+      this.setState({ message: '' });
+    }
+  };
+
+  update(field) {
+    return (e) => {
+      this.setState({ [field]: e.target.value });
+    };
+  };
+
   render() {
+    let list;
+    if (this.state.chatHistory) {
+      list = this.state.chatHistory.map((message, idx) => {
+        return (
+          <li key={idx} className="chat-message">
+            <main className="message-sender">User: {this.props.currentUser.username}</main>
+            Message: {message}
+          </li>
+        )
+      })
+    } 
+
     if (this.props.channel) {
-      return(
-        <div className="messages-container">
+      return <div className="messages-container">
           {this.props.channel.name}
-          <br/>
+          <br />
           {this.props.channel._id}
-        </div>
-      )
+          <ul id="chat-history">
+            {/* {this.state.chatHistory} */}
+            {list}
+          </ul>
+
+          <form onSubmit={this.handleSubmit}>
+            <input type="text" id="chat-message-input" onChange={this.update("message")} value={this.state.message} />
+            <input type="submit" />
+          </form>
+
+          {this.state.message.length > 0 ? 
+            <span>{this.props.currentUser.username} is typing...</span> :
+            null
+          }
+        </div>;
     } else {
       return null;
     }

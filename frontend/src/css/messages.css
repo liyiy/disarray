@@ -1,0 +1,9 @@
+.messages-container {
+  background-color: #36393f;
+  color: white;
+  overflow: scroll;
+}
+
+.chat-message {
+  margin: 10px;
+}
