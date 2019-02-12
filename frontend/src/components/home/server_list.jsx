@@ -34,7 +34,6 @@ class ServerList extends React.Component {
         } else {
           this.setState({ [server._id]: "inactive"})
         }
-        console.log(server);
       });
     };
   };

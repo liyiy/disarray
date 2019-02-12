@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchMessages, createMessage } from '../../actions/message_actions';
+import io from 'socket.io-client'
 
 const msp = (state, ownProps) => {
   return {
@@ -19,6 +20,7 @@ const mdp = dispatch => {
 class MessagesShow extends React.Component {
   constructor(props) {
     super(props)
+    this.socket = io({transports: ['websocket', 'flashsocket', 'polling']});
   }
 
   render() {

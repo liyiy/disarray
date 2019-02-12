@@ -3,7 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
+// const http = require('http').Server(app);
+// const io = require('socket.io')(http);
 const db = require('./config/keys').mongoURI;
+
 const users = require('./routes/api/users');
 const servers = require('./routes/api/servers');
 const channels = require('./routes/api/channels');
@@ -26,6 +29,19 @@ app.use("/api/messages", messages);
 
 app.use(passport.initialize());
 
+
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+const server = app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+const io = require('socket.io').listen(server);
+
+
+io.on('connection', socket => {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+
+io.set('transports', ['websocket', 'flashsocket', 'polling']);
