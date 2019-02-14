@@ -38,6 +38,7 @@ const io = require('socket.io').listen(server);
 
 io.on('connection', socket => {
   socket.on('chat message', message => {
+    console.log(message);
     io.emit('chat message', message);
   });
 });

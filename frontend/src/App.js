@@ -29,9 +29,9 @@ class App extends Component {
           <section className="channel-container">
             <ProtectedRoute path="/servers/:serverId/:channelId" component={MessagesShow} />
             <ProtectedRoute path="/servers/:serverId/:channelId" component={ServerUsersShow} /> 
+            <ProtectedRoute path="/channels/@me" component={FriendListShow} />
+            <ProtectedRoute path="/channels/@me" component={FriendsShow} />
           </section>
-          <ProtectedRoute path="/channels/@me" component={FriendListShow} />
-          <ProtectedRoute path="/channels/@me" component={FriendsShow} />
           {/* <ProtectedRoute component={ChatBox}/> */}
         </div>
       </>;
