@@ -34,28 +34,28 @@ const port = process.env.PORT || 5000;
 
 const server = http.listen(port, () => console.log(`Server is running on port ${port}`));
 
-// const io = require('socket.io').listen(server);
-
-// io.on('connection', socket => {
-//   socket.on('chat message', message => {
-//     io.emit('chat message', message);
-//   });
-// });
-
 io.on('connection', function(socket) {
   console.log('a user has connected');
   socket.on('disconnect', function() {
     console.log('a user has disconnected');
   });
-  // socket.on('example_message', function(msg) {
-  //   console.log('message: ' + msg);
-  // });
-  socket.on('SEND_MESSAGE', function(data) {
-    io.emit('RECEIVE_MESSAGE', data);
+  let room;
+
+  socket.on("JOIN_CHANNEL", data => {
+    console.log(`joined channel ${data.channelId}`);
+    room = data.channelId;
+    socket.join(room);
   });
-  // socket.on('chat message', function(msg) {
-  //   io.emit('chat message', msg);
-  // });
+
+  socket.on("LEAVE_CHANNEL", data => {
+    room = data.channelId;
+    socket.leave(room);
+    console.log(`left channel ${data.channelId}`);
+  });
+
+  
+  socket.on('SEND_MESSAGE', function(data) {
+    io.to(room).emit('RECEIVE_MESSAGE', data);
+  });
 });
 
-// io.listen(server);

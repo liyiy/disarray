@@ -8,6 +8,7 @@ import io from 'socket.io-client';
 const msp = (state, ownProps) => {
   return {
     channel: state.entities.channels[ownProps.match.params.channelId],
+    channelId: ownProps.match.params.channelId,
     currentUser: state.session
   };
 };
@@ -22,7 +23,7 @@ const mdp = dispatch => {
 class MessagesShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { message: "", chatHistory: [] };
+    this.state = { message: "", chatHistory: [], channelId: this.props.channelId };
     this.sendMessage = this.sendMessage.bind(this);
     this.socket = io("localhost:3000");
     this.socket.on('RECEIVE_MESSAGE', function (data) {
@@ -33,14 +34,24 @@ class MessagesShow extends React.Component {
       this.setState({ chatHistory: [...this.state.chatHistory, data.message]});
       console.log(this.state.chatHistory);
     };
-  }
 
+  }
+  
   componentDidMount() {
     this.scrollToBottom();
+    this.socket.emit("JOIN_CHANNEL", {
+      channelId: this.state.channelId
+    });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(oldProps) {
     this.scrollToBottom();
+    this.socket.emit("LEAVE_CHANNEL", {
+      channelId: oldProps.channelId
+    });
+    this.socket.emit("JOIN_CHANNEL", {
+      channelId: this.props.channelId
+    });
   }
 
   sendMessage(ev) {

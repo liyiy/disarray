@@ -12,8 +12,8 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
   return {
     deleteServer: serverId => dispatch(deleteServer(serverId))
-  }
-}
+  };
+};
 
 class ServerListItem extends React.Component {
   constructor(props) {
