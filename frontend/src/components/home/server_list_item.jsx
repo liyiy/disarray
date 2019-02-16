@@ -39,7 +39,7 @@ class ServerListItem extends React.Component {
 
   deleteServer(e, serverId) {
     e.stopPropagation();
-    this.props.deleteServer(serverId);
+    this.props.deleteServer(serverId).then(this.props.history.push(`/channels/@me`));
   };
 
   render() {

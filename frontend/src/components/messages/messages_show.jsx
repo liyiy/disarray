@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchMessages, createMessage } from '../../actions/message_actions';
 import io from 'socket.io-client';
-import openSocket from 'socket.io-client';
-// const socket = openSocket('http://localhost:3000');
+
 
 const msp = (state, ownProps) => {
   return {
@@ -24,8 +23,6 @@ class MessagesShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = { message: "", chatHistory: [] };
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.sendSocketIO = this.sendSocketIO.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
     this.socket = io("localhost:3000");
     this.socket.on('RECEIVE_MESSAGE', function (data) {
@@ -33,9 +30,8 @@ class MessagesShow extends React.Component {
     });
 
     const addMessage = data => {
-      console.log(data);
-      this.setState({ messages: data });
-      console.log(this.state.messages);
+      this.setState({ chatHistory: [...this.state.chatHistory, data.message]});
+      console.log(this.state.chatHistory);
     };
   }
 
@@ -55,48 +51,19 @@ class MessagesShow extends React.Component {
     this.setState({ message: '' });
   }
 
-  // addMessage()
-
-//   this.sendMessage = ev => {
-//   ev.preventDefault();
-//   this.socket.emit('SEND_MESSAGE', {
-//     author: this.state.username,
-//     message: this.state.message
-//   });
-//   this.setState({ message: '' });
-// }
-
-  // handleSubmit(e) {
-  //   e.preventDefault();
-  //   if (this.state.message === "") {
-  //     return null;
-  //   } else {
-  //     this.socket.emit("chat message", this.state.message);
-  //     const history = this.state.chatHistory.concat(this.state.message);
-  //     this.socket.on("chat message", message => {
-  //       this.setState({ chatHistory: history });
-  //     });
-  //     this.setState({ message: "" });
-  //   }
-  // }
-
   update(field) {
     return e => {
       this.setState({ [field]: e.target.value });
     };
   }
 
-  scrollToBottom = () => {
+  scrollToBottom () {
     if (this.messagesEnd) {
       this.messagesEnd.scrollIntoView({ behavior: "auto" });
     } else {
       return null;
     }
-  };
-
-  // sendSocketIO() {
-  //   socket.emit('example_message', 'demo');
-  // }
+  }
 
   render() {
     let list;
@@ -120,7 +87,6 @@ class MessagesShow extends React.Component {
           <br />
           {this.props.channel._id}
           <ul id="chat-history">
-            {this.state.chatHistory}
             {list}
           </ul>
 
@@ -128,22 +94,11 @@ class MessagesShow extends React.Component {
             <span>{this.props.currentUser.username} is typing...</span>
           ) : null}
 
-          {/* <div>
-            <button onClick={this.sendSocketIO}>Send Socket.io</button>
-          </div> */}
-
-          {/* <form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              id="chat-message-input"
-              onChange={this.update("message")}
-              value={this.state.message}
-            />
+          <form onSubmit={this.sendMessage}>
+            <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({ message: ev.target.value })} />
             <input type="submit" />
-          </form> */}
-          <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({ message: ev.target.value })} />
+          </form>
 
-          <button onClick={this.sendMessage}>Send</button>
           <div
             style={{ float: "left", clear: "both" }}
             ref={el => {this.messagesEnd = el}}

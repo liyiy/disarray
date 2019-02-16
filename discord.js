@@ -44,13 +44,12 @@ const server = http.listen(port, () => console.log(`Server is running on port ${
 
 io.on('connection', function(socket) {
   console.log('a user has connected');
-  console.log(socket.id);
   socket.on('disconnect', function() {
     console.log('a user has disconnected');
   });
-  socket.on('example_message', function(msg) {
-    console.log('message: ' + msg);
-  });
+  // socket.on('example_message', function(msg) {
+  //   console.log('message: ' + msg);
+  // });
   socket.on('SEND_MESSAGE', function(data) {
     io.emit('RECEIVE_MESSAGE', data);
   });
