@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   background-color: #202225;
-  width: 80px;
+  max-width: 80px;
   align-items: center;
   flex: 1;
   user-select: none;
@@ -100,7 +100,7 @@
 }
 
 .server-icon:hover {
-  animation-duration: .5s;
+  animation-duration: .7s;
   animation-name: bubble-out;
   background: rgb(114, 137, 218);
   cursor: pointer;
@@ -108,8 +108,10 @@
 
 @keyframes bubble-out {
   0% {border-radius: 50%;}
-  40% {border-radius: 30%;}
-  70% {border-radius: 40%;}
+  20% {border-radius: 30%;}
+  40% {border-radius: 40%}
+  60% {border-radius: 35%;}
+  80% {border-radius: 38%}
   100% {border-radius: 35%;}
 }
 

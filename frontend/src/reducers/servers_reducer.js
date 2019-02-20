@@ -1,5 +1,5 @@
 import { RECEIVE_SERVERS, RECEIVE_SERVER, REMOVE_SERVER } from '../actions/server_actions';
-import { REMOVE_CHANNEL, RECEIVE_CHANNEL } from '../actions/channel_actions';
+// import { REMOVE_CHANNEL, RECEIVE_CHANNEL } from '../actions/channel_actions';
 import { merge }  from 'lodash';
 
 const serversReducer = (state = {}, action) => {
@@ -8,7 +8,7 @@ const serversReducer = (state = {}, action) => {
   switch(action.type) {
     case RECEIVE_SERVERS:
       const servers = {};
-      action.payload.data.forEach(server => {
+      action.payload.data.servers.forEach(server => {
           servers[server._id] = server;
       });
       return merge({}, newState, servers);
@@ -24,6 +24,6 @@ const serversReducer = (state = {}, action) => {
     default:
       return state;
   }
-}
+};
 
 export default serversReducer;

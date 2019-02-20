@@ -1,6 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const Friends = new Schema({
+  _id : String,
+  username  : String,
+  accepted  : Boolean,
+  type   : String,
+  date  : Date
+}, { _id: false });
+
+const Server = new Schema({
+  _id : String,
+  name  : String
+}, { _id: false });
+
 const UserSchema = new Schema({
   username: {
     type: String, 
@@ -14,14 +27,13 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  servers: {
-    type: Schema.Types.ObjectId,
-    ref: 'Server'
-  },
+  servers: [Server],
+  friends: [Friends],
   date: {
     type: Date,
     default: Date.now()
   }
 });
 
+// module.exports = Friend = mongoose.model('friends', Friends);
 module.exports = User = mongoose.model('users', UserSchema);

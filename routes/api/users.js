@@ -104,7 +104,84 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
     id: req.user.id,
     username: req.user.username,
     email: req.user.email,
-  })
+    friends: req.user.friends,
+    servers: req.user.servers
+  });
+});
+
+router.patch('/friends', passport.authenticate('jwt', {session: false}), (req, res) => {
+  
+  if (req.body.add) {
+    if (req.body.accepted == false) {
+      User.findById(req.user.id, function (err, user) {
+        if (!err) {
+          user.friends.push({ _id: req.body.id, username: req.body.username, accepted: false, type: "Outgoing"});
+          user.save();
+        }
+      });
+      User.findById(req.body.id, function(err, user) {
+        if (!err) {
+          user.friends.push({ _id: req.user.id, username: req.user.username, accepted: false, type: "Incoming" });
+          user.save();
+        }
+      });
+    }
+    else {
+      User.findById(req.user.id, function(err, user) {
+        if (!err) {
+          user.friends.id(req.body.id).remove();
+          user.friends.push({ _id: req.body.id, username: req.body.username, accepted: true, type: "Incoming" });
+          user.save();
+        }
+      });
+      User.findById(req.body.id, function(err, user) {
+        if (!err) {
+          user.friends.id(req.user.id).remove();
+          user.friends.push({ _id: req.user.id, username: req.body.username, accepted: true, type: "Outgoing"});
+          user.save();
+        }
+      });
+    }
+  } else {
+    User.findById(req.user.id, function(err, user) {
+      if (!err) {
+        user.friends.id(req.body.id).remove();
+        user.save();
+      }
+    });
+    User.findById(req.body.id, function(err, user) {
+      if (!err) {
+        user.friends.id(req.user.id).remove();
+        user.save();
+      }
+    });
+  }
+
+  res.json({
+    id: req.body.id,
+    username: req.body.username,
+    accepted: req.body.accepted,
+    type: req.body.type
+  });
+
+});
+
+router.get('/friends', passport.authenticate('jwt', {session: false}), (req, res) => {
+  res.json({
+    friends: req.user.friends
+  });
+});
+
+router.get('/', function (req, res) {
+  User.find({}, function (err, users) {
+    var userMap = {};
+
+    users.forEach(function (user) {
+      userMap[user._id] = {id: user._id, email: user.email, username: user.username}
+    });
+
+    res.send(userMap);
+  });
 });
 
 module.exports = router;

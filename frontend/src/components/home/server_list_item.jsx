@@ -12,8 +12,8 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
   return {
     deleteServer: serverId => dispatch(deleteServer(serverId))
-  }
-}
+  };
+};
 
 class ServerListItem extends React.Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class ServerListItem extends React.Component {
 
   deleteServer(e, serverId) {
     e.stopPropagation();
-    this.props.deleteServer(serverId);
+    this.props.deleteServer(serverId).then(this.props.history.push(`/channels/@me`));
   };
 
   render() {

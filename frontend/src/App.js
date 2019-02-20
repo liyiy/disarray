@@ -6,6 +6,9 @@ import SignUpFormContainer from './components/session/signup_form_container';
 import HomePage from './components/home/home_page';
 import ServerShow from './components/home/server_show';
 import MessagesShow from './components/messages/messages_show';
+import FriendListShow from './components/friends/friend_list_show';
+import FriendsShow from './components/friends/friends_show';
+import ServerUsersShow from './components/home/server_users_show';
 import Modal from './components/modal';
 import './css/App.css';
 
@@ -18,12 +21,17 @@ class App extends Component {
   render() {
     return <>
         <Modal />
+        <div className="home">
         <AuthRoute exact path="/login" component={LogInFormContainer} />
         <AuthRoute exact path="/signup" component={SignUpFormContainer} />
-        <div className="home">
           <ProtectedRoute path="/" component={HomePage} />
           <ProtectedRoute path="/servers/:serverId" component={ServerShow} />
-          <ProtectedRoute exact path="/servers/:serverId/:channelId" component={MessagesShow} />
+          {/* <section className="channel-container"> */}
+            <ProtectedRoute path="/servers/:serverId/:channelId" component={MessagesShow} />
+            <ProtectedRoute path="/servers/:serverId/:channelId" component={ServerUsersShow} /> 
+            <ProtectedRoute path="/channels/@me" component={FriendListShow} />
+            <ProtectedRoute path="/channels/@me" component={FriendsShow} />
+          {/* </section> */}
           {/* <ProtectedRoute component={ChatBox}/> */}
         </div>
       </>;

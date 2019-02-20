@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { deleteServer } from '../../actions/server_actions';
 import { logoutUser } from '../../util/session_api_util';
 import { openModal } from '../../actions/modal_actions';
@@ -52,10 +52,19 @@ class ServerList extends React.Component {
 
     return (
       <div className="servers-container">
+        <div className="friends-logo-container">
+        <div className="friends-logo-div">
+          <img 
+              className="friends-logo"
+              src={require("./discord-logo-white.png")}
+              onClick={() => this.props.history.push("/channels/@me")}>
+          </img>
+        </div>  
+      </div>
         <ul className="servers-list">
           {list}
           <li>
-            <button className="new-server-button" onClick={() => this.props.openModal('createServer')}>+</button>
+            <button className="new-server-button" onClick={() => this.props.openModal('serverOptions')}>+</button>
           </li>
         </ul>
         <button onClick={this.props.logoutUser}>Logout</button>

@@ -3,7 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 const db = require('./config/keys').mongoURI;
+
 const users = require('./routes/api/users');
 const servers = require('./routes/api/servers');
 const channels = require('./routes/api/channels');
@@ -26,6 +29,33 @@ app.use("/api/messages", messages);
 
 app.use(passport.initialize());
 
+
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+const server = http.listen(port, () => console.log(`Server is running on port ${port}`));
+
+io.on('connection', function(socket) {
+  console.log('a user has connected');
+  socket.on('disconnect', function() {
+    console.log('a user has disconnected');
+  });
+  let room;
+
+  socket.on("JOIN_CHANNEL", data => {
+    console.log(`joined channel ${data.channelId}`);
+    room = data.channelId;
+    socket.join(room);
+  });
+
+  socket.on("LEAVE_CHANNEL", data => {
+    room = data.channelId;
+    socket.leave(room);
+    console.log(`left channel ${data.channelId}`);
+  });
+
+  
+  socket.on('SEND_MESSAGE', function(data) {
+    io.to(room).emit('RECEIVE_MESSAGE', data);
+  });
+});
+
