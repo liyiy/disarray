@@ -3,8 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-// const http = require('http').Server(app);
-// const io = require('socket.io')(http);
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 const db = require('./config/keys').mongoURI;
 
 const users = require('./routes/api/users');
@@ -32,13 +32,31 @@ app.use(passport.initialize());
 
 const port = process.env.PORT || 5000;
 
-const server = app.listen(port, () => console.log(`Server is running on port ${port}`));
+const server = http.listen(port, () => console.log(`Server is running on port ${port}`));
 
-const io = require('socket.io').listen(server);
+// const io = require('socket.io').listen(server);
 
-io.on('connection', socket => {
-  socket.on('chat message', message => {
-    console.log(message);
-    io.emit('chat message', message);
+// io.on('connection', socket => {
+//   socket.on('chat message', message => {
+//     io.emit('chat message', message);
+//   });
+// });
+
+io.on('connection', function(socket) {
+  console.log('a user has connected');
+  console.log(socket.id);
+  socket.on('disconnect', function() {
+    console.log('a user has disconnected');
   });
+  socket.on('example_message', function(msg) {
+    console.log('message: ' + msg);
+  });
+  socket.on('SEND_MESSAGE', function(data) {
+    io.emit('RECEIVE_MESSAGE', data);
+  });
+  // socket.on('chat message', function(msg) {
+  //   io.emit('chat message', msg);
+  // });
 });
+
+// io.listen(server);
