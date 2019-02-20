@@ -12,6 +12,10 @@ export const fetchUserServers = () => {
   return axios.get(`api/servers/`);
 };
 
+export const joinServer = data => {
+  return axios.patch('api/servers/join', data);
+};
+
 export const deleteServer = serverId => {
   return axios.delete(`api/servers/${serverId}`);
 };

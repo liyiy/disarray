@@ -70,29 +70,25 @@ router.get('/:server_id', (req, res) => {
 
 router.patch('/join', passport.authenticate('jwt', { session: false }), (req, res) => {
 
-  Server.findById(req.body.id, function(err, server) {
+  let serverName;
+
+  Server.findById(req.body.serverId, function(err, server) {
     if (!err) {
       server.users.push({ _id: req.user.id, username: req.user.username});
+      serverName = server.name;
       server.save();
-    }
-  });
-  User.findById(req.user.id, function(err, user) {
-    if (!err) {
-      user.servers.push({ _id: req.body.id, name: req.body.name});
-      user.save();
-    }
-  });
 
-  res.json({
-    user: req.user.username,
-    server: req.body.name
-  });
+      User.findById(req.user.id, function(err, user) {
+        if (!err) {
+          user.servers.push({ _id: req.body.serverId, name: server.name });
+          user.save();
+        };
+      });
+    };
+  }).then(server => res.json(server));
 });
 
 router.delete('/:server_id', (req, res) => {
-
-  Server.remove({ _id: req.params.server_id })
-    .then(() => res.json({ id: req.params.server_id }));
 
   Server.findById(req.params.server_id, function(err, server) {
     server.users.forEach(user => {
@@ -103,6 +99,12 @@ router.delete('/:server_id', (req, res) => {
         }
       });
     });
+    server.channels.forEach(channel => {
+      Channel.remove({ _id: channel._id })
+        .then(() => null)
+    });
+    Server.remove({ _id: req.params.server_id })
+      .then(() => res.json({ id: req.params.server_id }));
   });
 });
 

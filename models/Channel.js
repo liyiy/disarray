@@ -22,4 +22,4 @@ const ChannelSchema = new Schema({
   }
 });
 
-module.exports = Server = mongoose.model("channels", ChannelSchema);
+module.exports = Channel = mongoose.model("channels", ChannelSchema); 

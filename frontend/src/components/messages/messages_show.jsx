@@ -34,7 +34,6 @@ class MessagesShow extends React.Component {
       this.setState({ chatHistory: [...this.state.chatHistory, data.message]});
       console.log(this.state.chatHistory);
     };
-
   }
   
   componentDidMount() {
@@ -52,7 +51,7 @@ class MessagesShow extends React.Component {
     this.socket.emit("JOIN_CHANNEL", {
       channelId: this.props.channelId
     });
-  }
+  };
 
   sendMessage(ev) {
     ev.preventDefault();
