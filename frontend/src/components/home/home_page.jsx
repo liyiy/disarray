@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom';
 import { fetchServers } from '../../actions/server_actions';
 import ServerList from './server_list';
 import ServerShow from './server_show';
-import io from 'socket.io-client';
 
 const msp = (state, ownProps) => {
   return {

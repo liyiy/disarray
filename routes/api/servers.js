@@ -90,13 +90,21 @@ router.patch('/join', passport.authenticate('jwt', { session: false }), (req, re
 });
 
 router.delete('/:server_id', (req, res) => {
+
   Server.remove({ _id: req.params.server_id })
     .then(() => res.json({ id: req.params.server_id }));
+
+  Server.findById(req.params.server_id, function(err, server) {
+    server.users.forEach(user => {
+      User.findById(user._id, function (err, user) {
+        if (!err) {
+          user.servers.id(server._id).remove();
+          user.save();
+        }
+      });
+    });
+  });
 });
-
-
-
-
 
 module.exports = router;
 
