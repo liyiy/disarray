@@ -13,7 +13,6 @@ const msp = (state, ownProps) => {
   // if (state.entities.servers[ownProps.match.params.serverId].users) {
   //   serverUsers = state.entities.servers[ow]
   // }
-  // debugger 
   return {
     server: state.entities.servers[ownProps.match.params.serverId],
     serverId: ownProps.match.params.serverId,
@@ -37,29 +36,21 @@ class ServerShow extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.server) {
-      this.props.fetchChannels(this.props.server._id)
-        .then(channels => {
-          if (channels.payload.data.length > 0) {
-            this.props.history.push(`${this.props.server._id}/${channels.payload.data[0]._id}`);
-          } else {
-            return null;
-          }
-        });
-    };
+    this.props.fetchChannels(this.props.serverId)
+      .then(channels => {
+        if (channels.payload.data.length > 0) {
+          this.props.history.push(`${this.props.serverId}/${channels.payload.data[0]._id}`);
+        } else {
+          return null;
+        }
+    });
   };
 
   componentDidUpdate(oldProps) {
     if (oldProps.server) {
       if (oldProps.server._id !== this.props.server._id) {
-        this.props.fetchChannels(this.props.server._id)
-          .then(channels => {
-            if (channels.payload.data.length > 0) {
-              this.props.history.push(`${this.props.server._id}/${channels.payload.data[0]._id}`);
-            } else {
-              return null;
-            }
-          });
+        debugger
+        this.props.history.push(`${this.props.server._id}/${this.props.channels[0]._id}`);
       };
     };
   };

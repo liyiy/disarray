@@ -29,7 +29,7 @@ class ServerList extends React.Component {
   componentDidUpdate(oldProps) {
     if (oldProps.location.pathname !== this.props.location.pathname) {
       this.props.servers.forEach(server => {
-        if (this.props.location.pathname.slice(9) === server._id) {
+        if (this.props.location.pathname.split("/").includes(server._id)) {
           this.setState({ [server._id]: "active" })
         } else {
           this.setState({ [server._id]: "inactive"})
@@ -71,26 +71,23 @@ class ServerList extends React.Component {
     //   </div>
     // );
     return (
-      <>
-      <div className="position-container"/>
-        <ul className="servers-container">
-          <div className="friends-logo-container">
-            <div className="friends-logo-div">
-              <img
-                alt="friends-logo-img"
-                className="friends-logo"
-                src={require("./discord-logo-white.png")}
-                onClick={() => this.props.history.push("/channels/@me")}>
-              </img>
-            </div>
+      <ul className="servers-container">
+        <div className="friends-logo-container">
+          <div className="friends-logo-div">
+            <img
+              alt="friends-logo-img"
+              className="friends-logo"
+              src={require("./discord-logo-white.png")}
+              onClick={() => this.props.history.push("/channels/@me")}>
+            </img>
           </div>
-          {list}
-          <li>
-            <button className="new-server-button" onClick={() => this.props.openModal('serverOptions')}>+</button>
-          </li>
-          <button onClick={this.props.logoutUser}>Logout</button>
-        </ul>
-      </>
+        </div>
+        {list}
+        <li>
+          <button className="new-server-button" onClick={() => this.props.openModal('serverOptions')}>+</button>
+        </li>
+        <button onClick={this.props.logoutUser}>Logout</button>
+      </ul>
     );
   };
 };

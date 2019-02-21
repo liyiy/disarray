@@ -30,6 +30,9 @@ class ServerListItem extends React.Component {
   };
 
   handleServerClick() {
+    if(this.props.active === "active") {
+      return null;
+    }
     this.serverIcon.className = "server-icon-active";
     this.props.history.push(`/servers/${this.props.server._id}`);
   };
