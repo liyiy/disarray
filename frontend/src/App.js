@@ -24,15 +24,17 @@ class App extends Component {
         <div className="home">
         <AuthRoute exact path="/login" component={LogInFormContainer} />
         <AuthRoute exact path="/signup" component={SignUpFormContainer} />
-          <ProtectedRoute path="/" component={HomePage} />
-          <ProtectedRoute path="/servers/:serverId" component={ServerShow} />
-          {/* <section className="channel-container"> */}
-            <ProtectedRoute path="/servers/:serverId/:channelId" component={MessagesShow} />
-            <ProtectedRoute path="/servers/:serverId/:channelId" component={ServerUsersShow} /> 
-            <ProtectedRoute path="/channels/@me" component={FriendListShow} />
-            <ProtectedRoute path="/channels/@me" component={FriendsShow} />
-          {/* </section> */}
-          {/* <ProtectedRoute component={ChatBox}/> */}
+          <div className="main-app">
+            <ProtectedRoute path="/" component={HomePage} />
+            <ProtectedRoute path="/servers/:serverId" component={ServerShow} />
+            {/* <section className="channel-container"> */}
+              <ProtectedRoute path="/servers/:serverId/:channelId" component={MessagesShow} />
+              <ProtectedRoute path="/servers/:serverId/:channelId" component={ServerUsersShow} /> 
+              <ProtectedRoute path="/channels/@me" component={FriendListShow} />
+              <ProtectedRoute path="/channels/@me" component={FriendsShow} />
+            {/* </section> */}
+            {/* <ProtectedRoute component={ChatBox}/> */}
+          </div>
         </div>
       </>;
   }

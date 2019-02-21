@@ -50,25 +50,47 @@ class ServerList extends React.Component {
       list = null;
     };
 
+    // return (
+    //   <div className="servers-container">
+    //     <div className="friends-logo-container">
+    //     <div className="friends-logo-div">
+    //       <img 
+    //           className="friends-logo"
+    //           src={require("./discord-logo-white.png")}
+    //           onClick={() => this.props.history.push("/channels/@me")}>
+    //       </img>
+    //     </div>  
+    //   </div>
+    //     <ul className="servers-list">
+    //       {list}
+    //       <li>
+    //         <button className="new-server-button" onClick={() => this.props.openModal('serverOptions')}>+</button>
+    //       </li>
+    //     </ul>
+    //     <button onClick={this.props.logoutUser}>Logout</button>
+    //   </div>
+    // );
     return (
-      <div className="servers-container">
-        <div className="friends-logo-container">
-        <div className="friends-logo-div">
-          <img 
-              className="friends-logo"
-              src={require("./discord-logo-white.png")}
-              onClick={() => this.props.history.push("/channels/@me")}>
-          </img>
-        </div>  
-      </div>
-        <ul className="servers-list">
+      <>
+      <div className="position-container"/>
+        <ul className="servers-container">
+          <div className="friends-logo-container">
+            <div className="friends-logo-div">
+              <img
+                alt="friends-logo-img"
+                className="friends-logo"
+                src={require("./discord-logo-white.png")}
+                onClick={() => this.props.history.push("/channels/@me")}>
+              </img>
+            </div>
+          </div>
           {list}
           <li>
             <button className="new-server-button" onClick={() => this.props.openModal('serverOptions')}>+</button>
           </li>
+          <button onClick={this.props.logoutUser}>Logout</button>
         </ul>
-        <button onClick={this.props.logoutUser}>Logout</button>
-      </div>
+      </>
     );
   };
 };

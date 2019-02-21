@@ -26,6 +26,7 @@ class ServerListItem extends React.Component {
 
   showServerName() {
     this.serverName.hidden = false;
+    this.serverName.style.top = `${this.serverItem.getBoundingClientRect().top+21}px`
   };
 
   handleServerClick() {
@@ -46,21 +47,22 @@ class ServerListItem extends React.Component {
     const { idx, server, active } = this.props;
 
     return (
-      <li key={idx} className="server-name-container">
-        <div
+      <li key={idx} className="server-name-container" id={server._id} ref={elem => this.serverItem = elem}>
+        <main
             className={active === "active" ? "server-icon-active" : "server-icon"}
             ref={elem => this.serverIcon = elem}
             onClick={this.handleServerClick}
             onPointerOver={this.showServerName}
             onPointerLeave={this.hideServerName}>
             {server.name[0]}
-        </div>
+        </main>
         <div className="server-name-hover"
-          ref={elem => this.serverName = elem}
-          hidden>
+             ref={elem => this.serverName = elem}
+             hidden>
           <span className="server-name">{server.name}</span>
+          <span className="server-name-hover-triangle"/>
         </div>
-        <button className="server-delete" onClick={(e) => this.deleteServer(e, server._id)}>Delete server</button>
+        {/* <button className="server-delete" onClick={(e) => this.deleteServer(e, server._id)}>Delete server</button> */}
       </li>
     );
   };
