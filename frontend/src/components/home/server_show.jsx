@@ -49,7 +49,6 @@ class ServerShow extends React.Component {
   componentDidUpdate(oldProps) {
     if (oldProps.server) {
       if (oldProps.server._id !== this.props.server._id) {
-        debugger
         this.props.history.push(`${this.props.server._id}/${this.props.channels[0]._id}`);
       };
     };

@@ -13,7 +13,6 @@ const serversReducer = (state = {}, action) => {
       });
       return merge({}, newState, servers);
     // case REMOVE_CHANNEL:
-    // debugger
     //   delete newState[action.payload.data.server].channels[action.payload.data._id]
     //   return merge({}, newState);
     case RECEIVE_SERVER:
