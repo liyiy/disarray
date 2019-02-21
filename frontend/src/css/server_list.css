@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   background-color: #202225;
-  max-width: 70px;
+  max-width: 80px;
   align-items: center;
   flex: 1;
-  padding: 10px 0 10px 10px;
   user-select: none;
+  position: relative;
 }
 
 .server-delete {
@@ -39,30 +39,13 @@
   outline: none;
 }
 
-.server-name-hover {
-  color: white;
-}
-
-.server-name {
-  color: white;
-  background-color: rgb(47, 49, 54);
-  border-radius: 50%;
-  text-align: center;
-  font-size: 18px;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  box-sizing: border-box;
-  margin: .5em 0;
-}
-
 .servers-list {
   flex: 1 1 auto;
   height: 100%;
-  position: relative;
-  width: 88px;
+  width: 98px;
   overflow-x: hidden;
   overflow-y: scroll;
+  padding: 10px 0 10px 10px;
 }
 
 .servers-list::-webkit-scrollbar {
@@ -87,4 +70,55 @@
 
 .server-name-show {
   color: white;
+}
+
+.server-icon-active {
+  color: white;
+  background: rgb(114, 137, 218);
+  border-radius: 35%;
+  text-align: center;
+  font-size: 18px;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  box-sizing: border-box;
+  margin: .5em 0;
+}
+
+.server-icon {
+  color: white;
+  background-color: rgb(47, 49, 54);
+  border-radius: 50%;
+  text-align: center;
+  font-size: 18px;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  box-sizing: border-box;
+  margin: .5em 0;
+  animation-fill-mode: forwards;
+}
+
+.server-icon:hover {
+  animation-duration: .5s;
+  animation-name: bubble-out;
+  background: rgb(114, 137, 218);
+  cursor: pointer;
+}
+
+@keyframes bubble-out {
+  0% {border-radius: 50%;}
+  40% {border-radius: 30%;}
+  70% {border-radius: 40%;}
+  100% {border-radius: 35%;}
+}
+
+.server-name-hover {
+  color: white;
+  position: absolute;
+  right: -50%;
+}
+
+.server-name {
+  text-align: left;
 }

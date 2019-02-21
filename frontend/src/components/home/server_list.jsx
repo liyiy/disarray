@@ -19,25 +19,37 @@ const mdp = dispatch => {
     logoutUser: () => dispatch(logoutUser()),
   };
 };
+
 class ServerList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {servers: this.props.servers};
-  }
+    this.state = { servers: this.props.servers };
+  };
 
-  // <Link to="/channels/@me">F</Link>
-  render(){
+  componentDidUpdate(oldProps) {
+    if (oldProps.location.pathname !== this.props.location.pathname) {
+      this.props.servers.forEach(server => {
+        if (this.props.location.pathname.slice(9) === server._id) {
+          this.setState({ [server._id]: "active" })
+        } else {
+          this.setState({ [server._id]: "inactive"})
+        }
+      });
+    };
+  };
 
+  render() {
     let list;
     if (this.props.servers) {
       list = this.props.servers.map((server, idx) => {
         return (
-          <ServerListItem key={idx} server={server} idx={idx}/>
-        )
-      })
+          <ServerListItem key={idx} server={server} idx={idx} active={this.state[server._id]}/>
+        );
+      });
     } else {
       list = null;
-    }
+    };
+
     return (
       <div className="servers-container">
         <div className="friends-logo-container">
@@ -52,13 +64,13 @@ class ServerList extends React.Component {
         <ul className="servers-list">
           {list}
           <li>
-            <button className="new-server-button" onClick={() => this.props.openModal('createServer')}>+</button>
+            <button className="new-server-button" onClick={() => this.props.openModal('serverOptions')}>+</button>
           </li>
         </ul>
         <button onClick={this.props.logoutUser}>Logout</button>
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 export default withRouter(connect(msp, mdp)(ServerList));

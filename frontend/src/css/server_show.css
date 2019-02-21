@@ -89,6 +89,12 @@
   cursor: pointer;
 }
 
+.channel-container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
 
 .channels-list {
 }

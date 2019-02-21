@@ -40,6 +40,11 @@ export const createServer = serverData => dispatch => {
     .then(response => dispatch(receiveServer(response)));
 };
 
+export const joinServer = data => dispatch => {
+  return ServerApiUtil.joinServer(data)
+    .then(res => dispatch(receiveServer(res)));
+};
+
 export const deleteServer = serverId => dispatch => {
   return ServerApiUtil.deleteServer(serverId)
     .then(response => dispatch(removeServer(response)));

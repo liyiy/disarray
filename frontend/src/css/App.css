@@ -3,6 +3,9 @@
 @import url("server_show.css");
 @import url("server_list.css");
 @import url("friends.css");
+@import url("messages.css");
+@import url("users.css");
+@import url("join_server.css");
 
 
 html, body {
@@ -110,5 +113,6 @@ html, body {
 .home {
   display: flex;
   height: 100%;
-  width: 100%
+  width: 100%;
+  overflow: hidden;
 }

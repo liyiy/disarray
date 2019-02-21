@@ -1,6 +1,24 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const Server = new Schema({
+  _id: String,
+  name: String
+}, { _id: false });
+
+const Channel = new Schema({
+  _id: String,
+  name: String
+})
+
+const Friend = new Schema({
+  _id: String,
+  username: String,
+  accepted: Boolean,
+  type: String,
+  date: Date
+}, { _id: false });
+
 const MessageSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
@@ -27,4 +45,4 @@ const MessageSchema = new Schema({
   }
 });
 
-module.exports = Server = mongoose.model("messages", MessageSchema);
+module.exports = Messages = mongoose.model("messages", MessageSchema);

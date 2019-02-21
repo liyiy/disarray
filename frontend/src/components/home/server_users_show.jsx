@@ -39,7 +39,7 @@ class ServerUsersShow extends React.Component {
     };
 
     return (
-      <div>
+      <div className="users-list">
       <div>Users</div>
       <ul>{names}</ul>
       </div>
