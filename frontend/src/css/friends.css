@@ -38,6 +38,7 @@
   margin-right: 12px;
   overflow: hidden;
   border-bottom: 1px solid #e9e7e7;
+  justify-content: space-between;
 }
 
 .friends-status-bar {
@@ -52,6 +53,13 @@
 
 .friends-status-bar div {
   margin-right: 15px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.friends-status-bar div:hover {
+  background-color: lightgray;
+  cursor: pointer;
 }
 
 .friends-list li:hover {
@@ -65,6 +73,10 @@
   padding: 4px;
   border-radius: 3px;
 
+}
+
+.add-friend:hover {
+  background-color: #7289da;
 }
 
 .line {
@@ -124,4 +136,31 @@
 .friends-logo {
   height: 33px;
   width: 33px;
+}
+
+.friends-all-on {
+    background-color: #4f545c;
+    color: #fff;
+  }
+
+.friends-pending-on {
+    background-color: #4f545c;
+    color: #fff;
+  }
+
+.delete-friend {
+  padding: 4px 7px;
+  color: black;
+  border-radius: 4px;
+  background-color: lightgray;
+}
+
+.delete-friend:hover {
+  background-color: gray;
+}
+
+.request-type {
+  color: rgb(172, 169, 169);
+  font-weight: 400;
+  font-size: 14px;
 }

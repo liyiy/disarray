@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { fetchServer } from '../../actions/server_actions';
 
 const msp = (state, ownProps) => {

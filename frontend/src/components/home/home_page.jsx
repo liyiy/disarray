@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
 import { fetchServers } from '../../actions/server_actions';
 import ServerList from './server_list';
-import ServerShow from './server_show';
 
 const msp = (state, ownProps) => {
   return {

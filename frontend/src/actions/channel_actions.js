@@ -1,5 +1,4 @@
 import * as ChannelApiUtil from '../util/channel_api_util';
-import { RECEIVE_SERVER, receiveServer } from './server_actions';
 
 export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
