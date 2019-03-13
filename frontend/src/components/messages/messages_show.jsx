@@ -93,30 +93,35 @@ class MessagesShow extends React.Component {
     if (this.props.channel) {
       return (
         <div className="messages-container">
-          {this.props.channel.name}
-          <br />
-          {this.props.channel._id}
-          <ul id="chat-history">
-            {list}
-          </ul>
+          <div className="messages-header">
+            #{this.props.channel.name}
+          </div>
+            {/* {this.props.channel._id} */}
+            <div className="messages-box">
+              <ul id="chat-history">
+                {list}
+              </ul>
 
-          {this.state.message.length > 0 ? (
-            <span>{this.props.currentUser.username} is typing...</span>
-          ) : null}
-
-          <form onSubmit={this.sendMessage}>
-            <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({ message: ev.target.value })} />
-            <input type="submit" />
-          </form>
-
-          <div
+              {/* {this.state.message.length > 0 ? (
+                <span>{this.props.currentUser.username} is typing...</span>
+              ) : null} */}
+          </div>
+          <div className="new-message-box">
+            <form onSubmit={this.sendMessage}>
+              <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({ message: ev.target.value })} />
+              
+            </form>
+          </div>      
+          {/* <div
             style={{ float: "left", clear: "both" }}
             ref={el => {this.messagesEnd = el}}
-          />
+          /> */}
         </div>
       );
     } else {
-      return null;
+      return (
+        <div>No Text Channels</div>
+      );
     }
   }
 }

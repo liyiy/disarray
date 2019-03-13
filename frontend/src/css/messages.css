@@ -1,10 +1,39 @@
 .messages-container {
-  background-color: #36393f;
-  color: white;
-  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  color: black;
   width: 100%;
 }
 
 .chat-message {
   margin: 10px;
+}
+
+.messages-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: 16px;
+  padding-left: 18px;
+  font-weight: 600;
+  color: #4f545c;
+  background-color: #fff;
+  min-height: 43px;
+  border-bottom: 1px solid lightgray;
+}
+
+.new-message-box {
+  padding: 15px;
+  border-top: 1px solid lightgray;
+}
+
+.messages-box {
+  flex-grow: 1;
+  overflow: scroll;
+  scrollbar-color: #7187df;
+}
+
+.form-control {
+  background-color: #f6f6f7;
 }
