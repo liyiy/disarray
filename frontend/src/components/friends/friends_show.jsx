@@ -42,6 +42,7 @@ class FriendsShow extends React.Component {
   componentDidMount() {
     this.props.fetchUsers();
     this.props.fetchFriends();
+    this.showAllFriends();
   }
 
   sendFriendRequest(e, friend) {

@@ -1,6 +1,7 @@
 .direct-messages-container {
   color: #fff;
   cursor: default;
+  height: 100%;
   display: block;
   font-size: 12px;
   font-weight: 500;
@@ -130,7 +131,7 @@
 
 .friends-logo-div:hover {
   cursor: pointer;
-  background-color: pink;
+  background-color: #7187df;
   
 }
 
