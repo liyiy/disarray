@@ -3,7 +3,7 @@
   flex-direction: column;
   /* border: 2px solid green; */
   color: #f8f8f8;
-  background-color: #282b30;
+  background-color: #2f3136;
   min-width: 240px;
   height: 100%;
 }
@@ -46,6 +46,11 @@
   font-size: 14px;
   font-weight: 400;
   padding: 0 10px;
+  background-color: #2a2c31;
+}
+
+.logout-button {
+  margin-left: 20px;
 }
 
 .channels-header {
@@ -97,6 +102,12 @@
   width: 100%;
 }
 
+.avatar {
+  border-radius: 100%;
+  height: 30px;
+  width: 30px;
+  margin-right: 15px;
+}
 
 .channels-list {
 }

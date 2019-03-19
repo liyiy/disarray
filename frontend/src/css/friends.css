@@ -1,6 +1,7 @@
 .direct-messages-container {
   color: #fff;
   cursor: default;
+  height: 100%;
   display: block;
   font-size: 12px;
   font-weight: 500;
@@ -113,7 +114,8 @@
 }
 
 .friends-logo-container {
-  margin-right: 10px;
+  /* margin-right: 10px; */
+  margin-top: 10px;
 } 
 
 
@@ -122,20 +124,20 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   background-color: #2f3136;
 }
 
 .friends-logo-div:hover {
   cursor: pointer;
-  background-color: pink;
+  background-color: #7187df;
   
 }
 
 .friends-logo {
-  height: 33px;
-  width: 33px;
+  height: 40px;
+  width: 40px;
 }
 
 .friends-all-on {

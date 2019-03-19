@@ -36,19 +36,19 @@ class FriendListShow extends React.Component {
       <>
         <div className="server-show-container">
           <div className="server-show-header">
-            find or start a conversation
           </div>
           <div>
-            Friends
           </div>
           <div className="direct-messages-container">
             Direct Messages
           </div>
-          <ul>
-            {friends}
-          </ul>
+          
           <div className="server-show-user">
+            <img className="avatar" src={require("../home/discord-avatar.png")}>
+            </img>
             {this.props.user}
+            <button className="logout-button" onClick={this.props.logoutUser}>Quit</button>
+
           </div>
         </div>
       </>

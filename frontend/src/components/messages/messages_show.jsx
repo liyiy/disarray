@@ -55,9 +55,11 @@ class MessagesShow extends React.Component {
 
   sendMessage(ev) {
     ev.preventDefault();
+    if (this.state.message !== "") {
     this.socket.emit('SEND_MESSAGE', {
       message: this.state.message
     });
+    }
     this.setState({ message: '' });
   }
 
@@ -82,9 +84,9 @@ class MessagesShow extends React.Component {
         return (
           <li key={idx} className="chat-message">
             <main className="message-sender">
-              User: {this.props.currentUser.username}
+              {this.props.currentUser.username}
             </main>
-            Message: {message}
+            {message}
           </li>
         );
       });

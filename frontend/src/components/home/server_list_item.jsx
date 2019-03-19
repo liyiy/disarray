@@ -11,7 +11,6 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
   return {
-    deleteServer: serverId => dispatch(deleteServer(serverId))
   };
 };
 
@@ -20,7 +19,6 @@ class ServerListItem extends React.Component {
     super(props);
     this.showServerName = this.showServerName.bind(this);
     this.hideServerName = this.hideServerName.bind(this);
-    this.deleteServer = this.deleteServer.bind(this);
     this.handleServerClick = this.handleServerClick.bind(this);
   }
 
@@ -37,10 +35,6 @@ class ServerListItem extends React.Component {
     this.serverName.hidden = true;
   };
 
-  deleteServer(e, serverId) {
-    e.stopPropagation();
-    this.props.deleteServer(serverId).then(this.props.history.push(`/channels/@me`));
-  };
 
   render() {
     const { idx, server, active } = this.props;
@@ -60,7 +54,6 @@ class ServerListItem extends React.Component {
           hidden>
           <span className="server-name">{server.name}</span>
         </div>
-        <button className="server-delete" onClick={(e) => this.deleteServer(e, server._id)}>Delete server</button>
       </li>
     );
   };
