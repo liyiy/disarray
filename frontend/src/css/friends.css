@@ -113,7 +113,8 @@
 }
 
 .friends-logo-container {
-  margin-right: 10px;
+  /* margin-right: 10px; */
+  margin-top: 10px;
 } 
 
 
@@ -122,8 +123,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   background-color: #2f3136;
 }
 
@@ -134,8 +135,8 @@
 }
 
 .friends-logo {
-  height: 33px;
-  width: 33px;
+  height: 40px;
+  width: 40px;
 }
 
 .friends-all-on {

@@ -8,6 +8,12 @@
 
 .chat-message {
   margin: 10px;
+  color: #747f8d;
+  font-size: 14px;
+  border-bottom: 1px solid #eceeef;
+  padding-bottom: 13px;
+  padding-left: 10px;
+  padding-top: 5px;
 }
 
 .messages-header {
@@ -29,11 +35,19 @@
 }
 
 .messages-box {
+  display: flex;
   flex-grow: 1;
-  overflow: scroll;
-  scrollbar-color: #7187df;
+  overflow: auto;
+  flex-direction: column-reverse;
 }
 
 .form-control {
   background-color: #f6f6f7;
+}
+
+.message-sender {
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 5px;
 }

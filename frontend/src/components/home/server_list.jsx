@@ -67,7 +67,6 @@ class ServerList extends React.Component {
             <button className="new-server-button" onClick={() => this.props.openModal('serverOptions')}>+</button>
           </li>
         </ul>
-        <button onClick={this.props.logoutUser}>Logout</button>
       </div>
     );
   };
