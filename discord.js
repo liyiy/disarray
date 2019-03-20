@@ -40,8 +40,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const port = process.env.PORT || 5000;
-
-const server = http.listen(port, () => console.log(`Server is running on port ${port}`));
+app.use(express.static(path.resolve(__dirname, './frontend/build')));
+app.get('*', function (request, response) {
+  response.sendFile(path.resolve(__dirname, './frontend/build', 'index.html'));
+});
+// const server = http.listen(port, () => console.log(`Server is running on port ${port}`));
+app.listen(port);
 
 io.on('connection', function(socket) {
   console.log('a user has connected');
