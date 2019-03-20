@@ -5,6 +5,7 @@
   "main": "discord.js",
   "scripts": {
     "start": "node discord.js",
+    "build": "concurrently \"npm run server\" \"npm run frontend\"",
     "server": "nodemon discord.js",
     "frontend-install": "npm install --prefix frontend",
     "frontend": "npm start --prefix frontend",
