@@ -30,12 +30,12 @@ app.use("/api/messages", messages);
 app.use(passport.initialize());
 
 if (process.env.NODE_ENV === 'production') {
-  // app.use(express.static('frontend/public'));
   const path = require('path');
-  app.get('/', (req, res) => {
+  // app.use(express.static('frontend/public'));
+  app.use(express.static(path.join(__dirname, 'frontend/public')));
+  app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'frontend', 'public', 'index.html'));
   });
-  app.use('/static', express.static(path.join(__dirname, 'frontend/public')));
   // Express serve up index.html file if it doesn't recognize route
 }
 
