@@ -8,7 +8,8 @@
     "server": "nodemon discord.js",
     "frontend-install": "npm install --prefix frontend",
     "frontend": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run frontend\""
+    "dev": "concurrently \"npm run server\" \"npm run frontend\"",
+    "postinstall": "webpack"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "nodemon": "^1.18.9"
   },
   "engines": {
-    "node": "8.9.2"
+    "node": "8.9.2",
+    "npm": "6.1.0"
   }
 }
