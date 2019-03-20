@@ -5,8 +5,8 @@
   "main": "discord.js",
   "scripts": {
     "start": "node discord.js",
-    "build": "concurrently \"npm run start\" \"npm run frontend-install\"",
     "server": "nodemon discord.js",
+    "heroku-postbuild": "cd frontend/ && npm install --only=dev --no-shrinkwrap && npm run build",
     "frontend-install": "npm install --prefix frontend",
     "frontend": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run frontend\""
