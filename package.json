@@ -40,5 +40,15 @@
   "engines": {
     "node": "8.9.2",
     "npm": "6.1.0"
-  }
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "frontend/node_modules"
+  ],
+  "keywords": [
+    "node",
+    "heroku",
+    "create-react-app",
+    "react"
+  ]
 }
