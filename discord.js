@@ -30,7 +30,6 @@ app.use("/api/messages", messages);
 app.use(passport.initialize());
 
 if (process.env.NODE_ENV === 'production') {
-  const path = require('path');
   // app.use(express.static('frontend/public'));
   app.use(express.static(path.join(__dirname, 'frontend/public')));
   app.get('*', (req, res) => {
@@ -38,6 +37,7 @@ if (process.env.NODE_ENV === 'production') {
   });
   // Express serve up index.html file if it doesn't recognize route
 }
+const path = require('path');
 
 const port = process.env.PORT || 5000;
 app.use(express.static(path.resolve(__dirname, './frontend/build')));
