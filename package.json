@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/liyiy/discord-mern/issues"
   },
-  "homepage": "https://github.com/liyiy/discord-mern#readme",
+  "homepage": "https://github.com/liyiy/disarray",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",

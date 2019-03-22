@@ -28,24 +28,26 @@ app.use("/api/channels", channels);
 app.use("/api/messages", messages);
 
 app.use(passport.initialize());
-const path = require('path');
 
+const path = require('path');
 if (process.env.NODE_ENV === 'production') {
   // app.use(express.static('frontend/public'));
-  app.use(express.static(path.join(__dirname, 'frontend/public')));
+  app.use(express.static(path.join(__dirname, 'frontend/build')));
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'public', 'index.html'));
+    res.sendFile(path.resolve(__dirname, './frontend/build', 'index.html'));
   });
   // Express serve up index.html file if it doesn't recognize route
 }
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
+});
+
+console.log("my backend works????");
 
 const port = process.env.PORT || 5000;
-app.use(express.static(path.resolve(__dirname, './frontend/build')));
-app.get('*', function (request, response) {
-  response.sendFile(path.resolve(__dirname, './frontend/build', 'index.html'));
-});
-// const server = http.listen(port, () => console.log(`Server is running on port ${port}`));
-app.listen(port);
+
+const server = http.listen(port, () => console.log(`Server is running on port ${port}`));
 
 io.on('connection', function(socket) {
   console.log('a user has connected');
