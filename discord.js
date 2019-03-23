@@ -43,8 +43,6 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
 });
 
-console.log("my backend works????");
-
 const port = process.env.PORT || 5000;
 
 const server = http.listen(port, () => console.log(`Server is running on port ${port}`));
