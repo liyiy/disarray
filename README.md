@@ -1,3 +1,4 @@
+https://rocky-journey-15190.herokuapp.com/
 # disarray
 
 A full-stack web application clone of Discord that allows users to create servers, channels and connect with other users to chat in real time!
