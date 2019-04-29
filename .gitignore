@@ -1,4 +1,5 @@
-/config/keys.js
 /node_modules
 /frontend/node_modules/
-/.vscode/
+/.vscode
+package-lock.json
+/.firebase

@@ -7,7 +7,7 @@ const ServerOptions = () => {
   return (
     <div className="server-options-container">
       <NewServer/>
-      <ServerJoin/>
+      {/* <ServerJoin/> */}
     </div>
   )
 }

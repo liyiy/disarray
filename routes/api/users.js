@@ -137,7 +137,7 @@ router.patch('/friends', passport.authenticate('jwt', {session: false}), (req, r
       User.findById(req.body.id, function(err, user) {
         if (!err) {
           user.friends.id(req.user.id).remove();
-          user.friends.push({ _id: req.user.id, username: req.body.username, accepted: true, type: "Outgoing"});
+          user.friends.push({ _id: req.user.id, username: req.user.username, accepted: true, type: "Outgoing"});
           user.save();
         }
       });

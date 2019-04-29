@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node discord.js",
     "server": "nodemon discord.js",
+    "heroku-postbuild": "cd frontend/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "frontend-install": "npm install --prefix frontend",
     "frontend": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run frontend\""
@@ -19,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/liyiy/discord-mern/issues"
   },
-  "homepage": "https://github.com/liyiy/discord-mern#readme",
+  "homepage": "https://github.com/liyiy/disarray",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
@@ -35,5 +36,19 @@
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
-  }
+  },
+  "engines": {
+    "node": "8.9.2",
+    "npm": "6.1.0"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "frontend/node_modules"
+  ],
+  "keywords": [
+    "node",
+    "heroku",
+    "create-react-app",
+    "react"
+  ]
 }
