@@ -65,7 +65,6 @@ class ServerListItem extends React.Component {
           <span className="server-name">{server.name}</span>
           <span className="server-name-hover-triangle"/>
         </div>
-        {/* <button className="server-delete" onClick={(e) => this.deleteServer(e, server._id)}>Delete server</button> */}
       </li>
     );
   };
