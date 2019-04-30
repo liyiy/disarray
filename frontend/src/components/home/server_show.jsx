@@ -4,6 +4,7 @@ import { fetchChannels } from '../../actions/channel_actions';
 import { connect } from 'react-redux';
 import ChannelList from '../channels/channel_list';
 import { logoutUser } from '../../util/session_api_util';
+import { openModal } from '../../actions/modal_actions';
 
 const msp = (state, ownProps) => {
   let channels;
@@ -23,7 +24,8 @@ const mdp = dispatch => {
     fetchServer: (id) => dispatch(fetchServer(id)),
     fetchChannels: (id) => dispatch(fetchChannels(id)),
     logoutUser: () => dispatch(logoutUser()),
-    deleteServer: serverId => dispatch(deleteServer(serverId))
+    deleteServer: serverId => dispatch(deleteServer(serverId)),
+    openModal: (modal, serverId) => dispatch(openModal(modal, serverId))
   };
 };
 
@@ -59,6 +61,10 @@ class ServerShow extends React.Component {
     };
   };
 
+  generateServerInvite(e) {
+
+  }
+
   render() {
     if (this.props.server) {
       return (
@@ -66,6 +72,10 @@ class ServerShow extends React.Component {
           <div className="server-show-container">
             <div className="server-show-header">
               {this.props.server.name}
+              <section onClick={() => this.props.openModal('generateServerInvite',
+                                                            this.props.serverId)} >
+              +
+              </section>
             </div>
             <div className="filler-channels">
               <ChannelList 

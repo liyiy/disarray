@@ -141,3 +141,9 @@
   font-weight: 700;
   text-transform: uppercase;
 }
+
+.server-invite-modal {
+  height: 200px;
+  width: 400px;
+  background: white;
+}

@@ -4,11 +4,17 @@ import { closeModal } from '../actions/modal_actions';
 import { withRouter } from 'react-router-dom';
 import ServerOptions from './home/server_options';
 import NewChannel from './channels/new_channel';
+import ServerInvite from './home/server_invite';
 
 const msp = state => {
-  return {
-    modal: state.modal
-  };
+  if (state.modal) {
+    return {
+      modal: state.modal.modal,
+      serverId: state.modal.serverId
+    };
+  } else {
+    return {};
+  }
 };
 
 const mdp = dispatch => {
@@ -17,7 +23,7 @@ const mdp = dispatch => {
   };
 };
 
-function Modal({modal, closeModal}) {
+function Modal({modal, closeModal, serverId}) {
   if (!modal) {
     return null;
   }
@@ -29,6 +35,9 @@ function Modal({modal, closeModal}) {
       break;
     case 'serverOptions':
       component = <ServerOptions />;
+      break;
+    case 'generateServerInvite':
+      component = <ServerInvite serverId={serverId}/>;
       break;
     default: 
       return null;

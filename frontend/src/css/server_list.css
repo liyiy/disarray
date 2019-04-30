@@ -19,9 +19,8 @@
 
 .servers-container {
   display: flex;
-  flex-flow: wrap;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   background-color: #202225;
   max-width: 80px;
   min-width: 80px;
