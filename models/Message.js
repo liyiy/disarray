@@ -29,16 +29,16 @@ const MessageSchema = new Schema({
     type: String,
     required: true
   },
-  modelId: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    refPath: "onModel"
-  },
-  onModel: {
-    type: String,
-    required: true,
-    enum: ['Channel', 'Friend']
-  },
+  // modelId: {
+  //   type: Schema.Types.ObjectId,
+  //   required: true,
+  //   refPath: "onModel"
+  // },
+  // onModel: {
+  //   type: String,
+  //   required: true,
+  //   enum: ['Channel', 'Friend']
+  // },
   date: {
     type: Date,
     default: Date.now()

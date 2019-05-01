@@ -6,7 +6,7 @@ const messagesReducer = (state = {}, action) => {
   let newState = merge({}, state);
   switch (action.type) {
     case RECEIVE_MESSAGES:
-      return merge({}, newState, action.payload.data)
+      return merge({}, newState, action.payload.data);
     case RECEIVE_MESSAGE:
       return merge({}, newState, {[action.payload.data.id]: action.payload.data})
     default:

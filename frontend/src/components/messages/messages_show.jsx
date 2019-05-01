@@ -59,6 +59,7 @@ class MessagesShow extends React.Component {
     this.socket.emit('SEND_MESSAGE', {
       message: this.state.message
     });
+    this.props.createMessage(this.state.message);
     }
     this.setState({ message: '' });
   }

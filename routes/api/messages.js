@@ -8,15 +8,13 @@ router.post('/', passport.authenticate('jwt', { session: false }),
   (req, res) => {
 
     const newMessage = new Message({
-      body: req.body.body,
-      author: req.user.id,
-      modelId: req.body.modelId,
-      onModel: req.body.modelType
+      body: Object.keys(req.body)[0],
+      author: req.user.id
     });
-
+    console.log(Object.keys(req.body)[0]);
     newMessage.save()
       .then(message => res.json(message))
-      .catch(err => res.json(err))
+      .catch(err => res.json(err));
   }
 );
 
